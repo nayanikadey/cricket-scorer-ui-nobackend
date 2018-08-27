@@ -5,11 +5,7 @@ import {ConnectedCurrentOverStats} from  "./CurrentOverStats";
 const Scorer = () => (
   <div>
     <ScoreBoard />
-<<<<<<< Updated upstream
     <ConnectedCurrentOverStats/>
-=======
-    
->>>>>>> Stashed changes
   </div>
 );
 
