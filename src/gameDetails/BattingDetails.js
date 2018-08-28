@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Table, Container, Row, Col } from 'reactstrap';
+import cricketUtility from '../Utility/cricketUtility';
 
 
 const createRowForBattingDetails = player => (
   <tr>
-    <td>{player.name}</td>
-    <td>{player.battingStats.runs}</td>
-    <td>{player.battingStats.balls}</td>
-    <td>{player.battingStats.fours}</td>
-    <td>{player.battingStats.sixes}</td>
+    <td className={`${!player.battingStats.hasPlayed ? 'bold-text' : ''} right-borders`}>
+      {`${player.name}${!player.battingStats.hasPlayed ? '*' : ''}`}
+    </td>
+    <td className="right-borders">{player.battingStats.runs}</td>
+    <td className="right-borders">{player.battingStats.balls}</td>
+    <td className="right-borders">{player.battingStats.fours}</td>
+    <td className="right-borders">{player.battingStats.sixes}</td>
+    <td>{cricketUtility.getStrikeRateForPlayer(player)}</td>
   </tr>
 );
 
@@ -24,15 +28,20 @@ const ScoreBattingDetails = props => (
   <Container>
     <Row>
       <Col md={{ size: 6, offset: 3 }}>
-        <Table>
-          <thead>
+        <h6>Batting Team</h6>
+      </Col>
+    </Row>
+    <Row>
+      <Col md={{ size: 6, offset: 3 }}>
+        <Table striped className="side-borders" size="sm">
+          <thead className="dark-table-header">
             <tr>
-              <th>Batsman</th>
-              <th>Runs</th>
-              <th>Balls</th>
-              <th>Fours</th>
-              <th>Sixed</th>
-              <th>StrikeRate</th>
+              <th className="right-borders">Batsman</th>
+              <th className="right-borders">Runs</th>
+              <th className="right-borders">Balls</th>
+              <th className="right-borders">Fours</th>
+              <th className="right-borders">Sixes</th>
+              <th>Strike rate</th>
             </tr>
           </thead>
           <tbody>
