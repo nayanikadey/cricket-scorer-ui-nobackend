@@ -5,7 +5,7 @@ const initialState = {
   balls: 0,
   striker: null,
   nonStriker: null,
-  bowler: 'Brett Lee',
+  bowler: 'Player2.11',
 };
 
 export const updateStriker = striker => ({

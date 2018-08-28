@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import gameInformationReducer from '../newGame/reducer';
 import currentDeliveryReducer from '../currentDelivery/currentDeliveryReducer';
-import currentOverStatsReducer from '../scorer/currentOverStatsReducer';
+import currentOverStatsReducer from '../currentOverStats/currentOverStatsReducer';
 import inningsReducer from '../innings/inningsReducer';
 
 const rootReducer = combineReducers({

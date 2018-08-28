@@ -36,9 +36,15 @@ CurrentOverStats.propTypes = {
 };
 
 
-const mapStateAsPropsForCurrentOverStats = state => ({
-  bowlerName: state.inningsInformation.bowler,
-  runsPerOver: state.currentOverStats.runsPerOver,
-});
+const mapStateAsPropsForCurrentOverStats = (state) => {
+  const previousTeamName = state.gameInformation.previousTeam;
+  const playerListFromPreviousTeam = state.gameInformation[previousTeamName].players;
+  const bowlerName = playerListFromPreviousTeam[state.inningsInformation.bowler].name;
+
+  return ({
+    bowlerName,
+    runsPerOver: state.currentOverStats.runsPerOver,
+  });
+};
 
 export default connect(mapStateAsPropsForCurrentOverStats)(CurrentOverStats);
