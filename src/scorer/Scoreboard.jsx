@@ -22,8 +22,6 @@ const ScoreBoard = (props) =>
         </Row>
       </Col>
     </Row>
-    <br />
-    {/* {ScoredCardForPlayedTeam(props)} */}
   </Container>;
 
 
@@ -53,9 +51,9 @@ const mapStateAsProps = (state) => {
     {
       team1: {
         name: currentTeam,
-        score: state.gameInformation[currentTeam].score,
-        wickets: state.gameInformation[currentTeam].wickets,
-        oversPlayed: CricketUtility.getOversFromTotalBallsPlayed(state.gameInformation[currentTeam].ballsPlayed)
+        score: state.inningsInformation.totalScore,
+        wickets: state.inningsInformation.wickets,
+        oversPlayed: CricketUtility.getOversFromTotalBallsPlayed(state.inningsInformation.balls)
       },
       team2: {
         name: previousTeam,
