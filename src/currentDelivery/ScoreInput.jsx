@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { updateRuns, resetCurrentDelivery } from '../currentDelivery/currentDeliveryReducer';
 import { updateInningsScore, createInitialInning, addABall } from '../innings/inningsReducer'
 import CricketUtility from '../Utility/cricketUtility';
+import { updateRunsPerOver } from '../scorer/currentOverStatsReducer';
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 
@@ -31,6 +32,7 @@ const gotoNextBall = (props) => {
   if(isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)){
     props.updateInningsScore(props.runs);
     props.updateInningsBall();
+    props.updateRunsPerOver(props.runs);
   }
   props.resetCurrentDelivery();
 } 
@@ -49,6 +51,7 @@ const mapStateAsProps = (state) => ({
 
 const mapDispatchAsProps = (dispatch) => ({
   onSelectRuns: (runs) => dispatch(updateRuns(runs)),
+  updateRunsPerOver: (runs) => dispatch(updateRunsPerOver(runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
   updateInningsScore: (runs) => dispatch(updateInningsScore(runs)),
   createInnings : () => dispatch(createInitialInning()),

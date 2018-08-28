@@ -1,8 +1,9 @@
 import React from 'react';
+import BattingDetails from './BattingDetails.js';
 
 const GameDetails = () => (
   <div>
-    This is the game details page
+    <BattingDetails />
   </div>
 );
 

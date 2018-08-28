@@ -15,7 +15,8 @@ const CricketUtility = {
 
   getBallsFromOvers: overs => overs * 6,
 
+  getStrikeRateForPlayer: player => ((player.battingStats.balls) > 0 ?
+    (player.battingStats.runs * 100) / (player.battingStats.balls) : 0).toFixed(2),
 };
-
 export default CricketUtility;
 

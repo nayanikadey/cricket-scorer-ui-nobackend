@@ -8,7 +8,7 @@ describe('innningsReducer/reducer', () => {
       balls: 0,
       striker: null,
       nonStriker: null,
-      bowler: null,
+      bowler: 'Brett Lee',
     };
     expect(inningsReducer(undefined, {})).toEqual(initialState);
   });
@@ -22,7 +22,7 @@ describe('innningsReducer/addScore', () => {
       balls: 0,
       striker: null,
       nonStriker: null,
-      bowler: null,
+      bowler: 'Brett Lee',
     };
 
     expect(inningsReducer(undefined, updateInningsScore(5))).toEqual(initialState);
@@ -37,7 +37,7 @@ describe('innningsReducer/updateStriker', () => {
       balls: 0,
       striker: 'striker',
       nonStriker: null,
-      bowler: null,
+      bowler: 'Brett Lee',
     };
 
     expect(inningsReducer(undefined, updateStriker('striker'))).toEqual(initialState);
@@ -52,7 +52,7 @@ describe('innningsReducer/updateNonStriker', () => {
       balls: 0,
       striker: null,
       nonStriker: 'nonStriker',
-      bowler: null,
+      bowler: 'Brett Lee',
     };
 
     expect(inningsReducer(undefined, updateNonStriker('nonStriker'))).toEqual(initialState);
@@ -82,7 +82,7 @@ describe('innningsReducer/addAWicket', () => {
       balls: 0,
       striker: null,
       nonStriker: null,
-      bowler: null,
+      bowler: 'Brett Lee',
     };
 
     expect(inningsReducer(undefined, addAWicket())).toEqual(initialState);
@@ -97,7 +97,7 @@ describe('innningsReducer/addABall', () => {
       balls: 1,
       striker: null,
       nonStriker: null,
-      bowler: null,
+      bowler: 'Brett Lee',
     };
 
     expect(inningsReducer(undefined, addABall())).toEqual(initialState);
