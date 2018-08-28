@@ -4,7 +4,7 @@ import currentOverStatsReducer from '../scorer/currentOverStatsReducer';
 
 const rootReducer = combineReducers({
   gameInformation: gameInformationReducer,
-  currentOverStats : currentOverStatsReducer
+  currentOverStats: currentOverStatsReducer,
 });
 
 export default rootReducer;
