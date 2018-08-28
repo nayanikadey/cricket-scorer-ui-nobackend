@@ -35,20 +35,22 @@ const ScoreBoard = (props) =>
   </Container>;
 
 const mapStateAsProps = (state) => {
+  const currentTeam = state.gameInformation.currentTeam;
+  const previousTeam = state.gameInformation.previousTeam;
   debugger
   return (
     {
       team1: {
-        name: state.gameInformation.team1.name,
-        score: state.gameInformation.team1.score,
-        wickets: state.gameInformation.team1.wickets,
-        oversPlayed: CricketUtility.getOversFromTotalBallsPlayed(state.gameInformation.team1.ballsPlayed)
+        name: currentTeam,
+        score: state.gameInformation[currentTeam].score,
+        wickets: state.gameInformation[currentTeam].wickets,
+        oversPlayed: CricketUtility.getOversFromTotalBallsPlayed(state.gameInformation[currentTeam].ballsPlayed)
       },
       team2: {
-        name: state.gameInformation.team2.name,
-        score: state.gameInformation.team2.score,
-        wickets: state.gameInformation.team2.wickets,
-        oversPlayed: CricketUtility.getOversFromTotalBallsPlayed(state.gameInformation.team2.ballsPlayed)
+        name: previousTeam,
+        score: state.gameInformation[previousTeam].score,
+        wickets: state.gameInformation[previousTeam].wickets,
+        oversPlayed: CricketUtility.getOversFromTotalBallsPlayed(state.gameInformation[previousTeam].ballsPlayed)
       },
       numberOfOvers: state.gameInformation.numberOfOvers,
     }
