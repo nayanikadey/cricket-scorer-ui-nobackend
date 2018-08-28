@@ -55,4 +55,10 @@ describe('cricketUtility', () => {
     const scoreCard = CricketUtility.getPlayedTeamScoreForScorerPage(team, numberOfOvers);
     expect('Team 2 scored 150/7 in 0/5').toEqual(scoreCard);
   });
+
+  it('Expects the number of balls in an over', () => {
+    const numberOfOvers = 5;
+    const balls = CricketUtility.getBallsFromOvers(numberOfOvers);
+    expect(30).toEqual(balls);
+  });
 });

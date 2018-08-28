@@ -13,6 +13,9 @@ const CricketUtility = {
 
   getPlayedTeamScoreForScorerPage: (team, numberOfOvers) => `${CricketUtility.getTeamNameForTheTeam(team)} scored ${CricketUtility.getPlayingTeamScore(team, numberOfOvers)}`,
 
+  getBallsFromOvers: overs => overs * 6,
+
 };
 
 export default CricketUtility;
+
