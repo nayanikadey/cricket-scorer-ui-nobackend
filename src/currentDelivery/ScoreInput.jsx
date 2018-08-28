@@ -26,7 +26,7 @@ const ScoreInput = (props) => (
 );
 
 const gotoNextBall = (props) => {
-  if(!props.runs)
+  if(props.runs == NaN)
     return;
 
   if(isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)){
