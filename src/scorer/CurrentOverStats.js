@@ -37,7 +37,7 @@ CurrentOverStats.propTypes = {
 
 
 const mapStateAsPropsForCurrentOverStats = state => ({
-  bowlerName: state.currentOverStats.bowlerName,
+  bowlerName: state.inningsInformation.bowler,
   runsPerOver: state.currentOverStats.runsPerOver,
 });
 
