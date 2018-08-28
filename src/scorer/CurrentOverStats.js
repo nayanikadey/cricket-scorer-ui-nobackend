@@ -19,17 +19,9 @@ const CurrentOverStats = (props) => (
         </Row>
       </Col>
     </Row>
-    <br/>
     <Row>
       <Col md= {{size:3,offset:3}} sm="12">
-        <Row>
-          <Col>
-          Bowler:
-          </Col>
-          <Col style ={{textAlign:"left"}}>
-            {props.bowlerName}
-          </Col>
-        </Row>
+        Bowler: {props.bowlerName}
       </Col>
     </Row>
   </Container>
