@@ -12,10 +12,10 @@ const ScoreBoard = (props) =>
 <Row className='large-font-size'>
   <Col md={{ size: 6, offset: 3 }}>
     <Row>
-      <Col md="5" xs="4">
+      <Col md="6" xs="4">
         <b> {CricketUtility.getTeamNameForTheTeam(props.team1)}</b>
       </Col>
-      <Col md={{ size: 4 }} style={{ textAlign: "right" }}>
+      <Col md={{ size: 6 }} style={{ textAlign: "right" }}>
         <b> {CricketUtility.getPlayingTeamScore(props.team1, props.numberOfOvers)}</b>
       </Col>
     </Row>

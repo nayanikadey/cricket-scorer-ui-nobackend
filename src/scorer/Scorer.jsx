@@ -1,6 +1,6 @@
 import React from 'react';
 import './scorer.css'
-import ConnectedCurrentOverStats from "./CurrentOverStats";
+import ConnectedCurrentOverStats from "../currentOverStats/CurrentOverStats";
 import ScoreInput from '../currentDelivery/ScoreInput';
 import {ConnectedScoredCardForPlayedTeam, ConnectedScoreBoard} from './Scoreboard';
 

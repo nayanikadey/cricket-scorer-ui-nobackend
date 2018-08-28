@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateRuns, resetCurrentDelivery } from '../currentDelivery/currentDeliveryReducer';
 import { updateInningsScore, createInitialInning, addABall } from '../innings/inningsReducer'
 import CricketUtility from '../Utility/cricketUtility';
-import { updateRunsPerOver } from '../scorer/currentOverStatsReducer';
+import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 

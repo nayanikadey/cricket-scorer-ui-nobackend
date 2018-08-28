@@ -1,5 +1,4 @@
 const initialState = {
-  bowlerName: 'Brett Lee', // team[playerName]
   runsPerOver: [], // data will come from 'currentDelivery' state
   numberOfBallsPlayed: 2,
 };
