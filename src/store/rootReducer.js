@@ -4,7 +4,8 @@ import currentDeliveryReducer from '../currentDelivery/currentDeliveryReducer';
 
 const rootReducer = combineReducers({
   gameInformation: gameInformationReducer,
-  currentDelivery : currentDeliveryReducer
+  currentDelivery : currentDeliveryReducer,
+  currentOverStats: currentOverStatsReducer,
 });
 
 export default rootReducer;
