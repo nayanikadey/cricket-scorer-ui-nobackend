@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'reactstrap/lib/Button';
 import { connect } from 'react-redux';
 import { updateRuns, resetCurrentDelivery } from '../currentDelivery/currentDeliveryReducer';
-import { updateInningsScore } from '../innings/inningsReducer'
+import { updateInningsScore, createInitialInning } from '../innings/inningsReducer'
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 
@@ -34,7 +34,8 @@ const mapStateAsProps = (state) => ({
 const mapDispatchAsProps = (dispatch) => ({
   onSelectRuns: (runs) => dispatch(updateRuns(runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
-  updateDelivery: (runs) => dispatch(updateInningsScore(runs))
+  updateDelivery: (runs) => dispatch(updateInningsScore(runs)),
+  createInnings : () => dispatch(createInitialInning()),
 })
 
 export default connect(mapStateAsProps, mapDispatchAsProps)(ScoreInput);;
