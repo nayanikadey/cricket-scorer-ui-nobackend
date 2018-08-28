@@ -7,22 +7,21 @@ import CricketUtility from '../Utility/cricketUtility';
 // Cond 2 :      display team scores
 
 const ScoreBoard = (props) =>
-  <Container>
-    <br />
-    <Row className='large-font-size'>
-      <Col md={{ size: 6, offset: 3 }}>
-        <Row>
-          <Col md="5" xs="4">
-            <b> {CricketUtility.getTeamNameForTheTeam(props.team1)}</b>
-          </Col>
-          <Col sm="1" xs="2" />
-          <Col style={{ textAlign: "right" }}>
-            <b> {CricketUtility.getPlayingTeamScore(props.team1, props.numberOfOvers)}</b>
-          </Col>
-        </Row>
+<Container>
+<br />
+<Row className='large-font-size'>
+  <Col md={{ size: 6, offset: 3 }}>
+    <Row>
+      <Col md="5" xs="4">
+        <b> {CricketUtility.getTeamNameForTheTeam(props.team1)}</b>
+      </Col>
+      <Col md={{ size: 4 }} style={{ textAlign: "right" }}>
+        <b> {CricketUtility.getPlayingTeamScore(props.team1, props.numberOfOvers)}</b>
       </Col>
     </Row>
-  </Container>;
+  </Col>
+</Row>
+</Container>;
 
 
 const ScoredCardForPlayedTeam = (props) => {
