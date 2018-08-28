@@ -9,9 +9,10 @@ import { updateRunsPerOver } from '../scorer/currentOverStatsReducer';
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 
 const ScoreInput = (props) => (
-  <div>
+  <div className="col-md-6 offset-md-4">
+    <br />
     {SCORES_POSSIBLE.map((score, index) =>
-      <Button
+      <Button 
         key={index}
         value={score}
         color={props.runs == score ? "success" : "primary"}
