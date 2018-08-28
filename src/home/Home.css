@@ -7,3 +7,23 @@ html, body {
 #root {
     height: 100%
 }
+
+.bold-text {
+    font-weight: bold;
+}
+
+.right-borders {
+    /* border-left : 1px solid black; */
+    border-right : 2px solid black;
+}
+
+.side-borders {
+    border-right : 2px solid black;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.dark-table-header {
+    background-color: #b5b5b5;
+}
