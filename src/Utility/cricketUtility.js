@@ -13,6 +13,7 @@ const CricketUtility = {
 
   getPlayedTeamScoreForScorerPage: (team, numberOfOvers) => `${CricketUtility.getTeamNameForTheTeam(team)} scored ${CricketUtility.getPlayingTeamScore(team, numberOfOvers)}`,
 
+  getStrikeRateForPlayer: player => ((player.battingStats.balls) > 0 ?
+    (player.battingStats.runs * 100) / (player.battingStats.balls) : 0),
 };
-
 export default CricketUtility;
