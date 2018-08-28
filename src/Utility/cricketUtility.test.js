@@ -55,4 +55,19 @@ describe('cricketUtility', () => {
     const scoreCard = CricketUtility.getPlayedTeamScoreForScorerPage(team, numberOfOvers);
     expect('Team 2 scored 150/7 in 0/5').toEqual(scoreCard);
   });
+
+  it('Expects The Strike rate of a player as 100  for 10 runs in 10 balls', () => {
+    const player = {
+      battingStats: {
+        runs: 5,
+        balls: 5,
+        fours: 0,
+        sixes: 0,
+        hasPlayed: false,
+      },
+
+    };
+    const strikerate = CricketUtility.getStrikeRateForPlayer(player);
+    expect(100).toEqual(strikerate);
+  });
 });
