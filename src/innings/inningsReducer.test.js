@@ -1,4 +1,4 @@
-import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addABall, addAWicket } from './inningsReducer';
+import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addABall, addAWicket, createInitialInning } from './inningsReducer';
 
 describe('innningsReducer/reducer', () => {
   it('should return initial state for innings', () => {
@@ -103,3 +103,19 @@ describe('innningsReducer/addABall', () => {
     expect(inningsReducer(undefined, addABall())).toEqual(initialState);
   });
 });
+
+describe('inningsReducer/createInning', () => {
+  it('should create the initial inning with bowler & batsmen names set from teams', () => {
+    const initialState = {
+      totalScore: 0,
+      wickets: 0,
+      balls: 0,
+      striker: 'Player1.1',
+      nonStriker: 'Player1.2',
+      bowler: 'Player2.11',
+    };
+
+    expect(inningsReducer(undefined, createInitialInning())).toEqual(initialState);
+  });
+});
+

@@ -36,6 +36,13 @@ export const addABall = () => ({
   type: 'ADD_A_BALL',
 });
 
+export const createInitialInning = () => ({
+  type: 'CREATE_INNING',
+  striker: 'Player1.1',
+  nonStriker: 'Player1.2',
+  bowler: 'Player2.11',
+});
+
 const inningsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_STRIKER': {
@@ -62,6 +69,11 @@ const inningsReducer = (state = initialState, action) => {
       return { ...state, balls: state.balls + 1 };
     }
 
+    case 'CREATE_INNING': {
+      return {
+        ...state, striker: action.striker, nonStriker: action.nonStriker, bowler: action.bowler,
+      };
+    }
     default:
       return state;
   }
