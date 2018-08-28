@@ -59,8 +59,8 @@ describe('cricketUtility', () => {
   it('Expects The Strike rate of a player as 100  for 10 runs in 10 balls', () => {
     const player = {
       battingStats: {
-        runs: 5,
-        balls: 5,
+        runs: 10,
+        balls: 10,
         fours: 0,
         sixes: 0,
         hasPlayed: false,
@@ -68,6 +68,21 @@ describe('cricketUtility', () => {
 
     };
     const strikerate = CricketUtility.getStrikeRateForPlayer(player);
-    expect(100).toEqual(strikerate);
+    expect('100.00').toEqual(strikerate);
+  });
+
+  it('Expects The Strike rate of a player as 0  for 0 runs in 0 balls', () => {
+    const player = {
+      battingStats: {
+        runs: 0,
+        balls: 0,
+        fours: 0,
+        sixes: 0,
+        hasPlayed: false,
+      },
+
+    };
+    const strikerate = CricketUtility.getStrikeRateForPlayer(player);
+    expect('0.00').toEqual(strikerate);
   });
 });
