@@ -13,26 +13,37 @@ const ScoreBoard = (props) =>
       <Col md={{ size: 6, offset: 3 }}>
         <Row>
           <Col md="5" xs="4">
-            <b>{props.team1.name}</b>
+            <b> {CricketUtility.getTeamNameForTheTeam(props.team1)}</b>
           </Col>
           <Col sm="1" xs="2" />
           <Col style={{ textAlign: "right" }}>
-            <b> {`${props.team1.score}/${props.team1.wickets} in ${props.team1.oversPlayed}/${props.numberOfOvers}`}</b>
+            <b> {CricketUtility.getPlayingTeamScore(props.team1, props.numberOfOvers)}</b>
           </Col>
         </Row>
       </Col>
     </Row>
     <br />
-    <Row>
-      <Col md={{ size: 6, offset: 3 }} sm="12">
+    {/* {ScoredCardForPlayedTeam(props)} */}
+  </Container>;
+
+
+const ScoredCardForPlayedTeam = (props) => {
+  if (props.team2.name) {
+    return (
+      <Container>
         <Row>
-          <Col>
-            {`${props.team2.name} scored ${props.team2.score}/${props.team2.wickets} in ${props.team2.oversPlayed}/${props.numberOfOvers}`}
+          <Col md={{ size: 6, offset: 3 }} sm="12">
+            <Row>
+              <Col>
+                {CricketUtility.getPlayedTeamScoreForScorerPage(props.team2, props.numberOfOvers)}
+              </Col>
+            </Row>
           </Col>
         </Row>
-      </Col>
-    </Row>
-  </Container>;
+      </Container>
+    )
+  }
+}
 
 const mapStateAsProps = (state) => {
   const currentTeam = state.gameInformation.currentTeam;
@@ -57,6 +68,5 @@ const mapStateAsProps = (state) => {
   )
 };
 
-
-
-export default connect(mapStateAsProps)(ScoreBoard);
+export const ConnectedScoreBoard = connect(mapStateAsProps)(ScoreBoard);
+export const ConnectedScoredCardForPlayedTeam = connect(mapStateAsProps)(ScoredCardForPlayedTeam);

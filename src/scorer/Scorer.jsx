@@ -1,12 +1,13 @@
 import React from 'react';
-import ScoreBoard from './Scoreboard';
 import './scorer.css'
 import ConnectedCurrentOverStats from "./CurrentOverStats";
 import ScoreInput from '../currentDelivery/ScoreInput';
+import {ConnectedScoredCardForPlayedTeam, ConnectedScoreBoard} from './Scoreboard';
 
 const Scorer = () => (
   <div>
-    <ScoreBoard />
+    <ConnectedScoreBoard />
+    <ConnectedScoredCardForPlayedTeam />
     <ConnectedCurrentOverStats />
     <ScoreInput />
   </div>
