@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import {CricketUtility} from '../Utility/cricketUtility';
+import CricketUtility from '../Utility/cricketUtility';
 
 // Condition 1 : Check for previous played
 // Cond 2 :      display team scores

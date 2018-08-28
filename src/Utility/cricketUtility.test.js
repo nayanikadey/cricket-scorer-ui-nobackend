@@ -1,4 +1,4 @@
-import { CricketUtility } from './cricketUtility';
+import CricketUtility from './cricketUtility';
 
 describe('cricketUtility', () => {
   it('Expects Whole Number when over is complete', () => {
