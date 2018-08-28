@@ -9,7 +9,7 @@ import {CricketUtility} from '../Utility/cricketUtility';
 const ScoreBoard = (props) =>
   <Container>
     <br />
-    <Row>
+    <Row className='large-font-size'>
       <Col md={{ size: 6, offset: 3 }}>
         <Row>
           <Col md="5" xs="4">
@@ -27,10 +27,7 @@ const ScoreBoard = (props) =>
       <Col md={{ size: 6, offset: 3 }} sm="12">
         <Row>
           <Col>
-            {`${props.team2.name} scored`}
-          </Col>
-          <Col style={{ textAlign: "right" }}>
-            <b>{`${props.team2.score}/${props.team2.wickets} in ${props.team2.oversPlayed}/${props.numberOfOvers}`}</b>
+            {`${props.team2.name} scored ${props.team2.score}/${props.team2.wickets} in ${props.team2.oversPlayed}/${props.numberOfOvers}`}
           </Col>
         </Row>
       </Col>
