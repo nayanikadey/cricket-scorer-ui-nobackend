@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import gameInformationReducer from '../newGame/reducer';
-import currentOverStatsReducer from '../scorer/currentOverStatsReducer';
+import currentDeliveryReducer from '../currentDelivery/currentDeliveryReducer';
 
 const rootReducer = combineReducers({
   gameInformation: gameInformationReducer,
-  currentOverStats : currentOverStatsReducer
+  currentDelivery : currentDeliveryReducer
 });
 
 export default rootReducer;

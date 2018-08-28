@@ -37,7 +37,7 @@ const ScoreBoard = (props) =>
 const mapStateAsProps = (state) => {
   const currentTeam = state.gameInformation.currentTeam;
   const previousTeam = state.gameInformation.previousTeam;
-  debugger
+
   return (
     {
       team1: {
