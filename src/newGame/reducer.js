@@ -8,6 +8,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -23,6 +24,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -38,6 +40,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -53,6 +56,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -68,6 +72,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -83,6 +88,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -98,6 +104,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -113,6 +120,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -128,6 +136,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -143,6 +152,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -158,6 +168,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -180,6 +191,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -195,6 +207,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -210,6 +223,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -225,6 +239,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -240,6 +255,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -255,6 +271,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -270,6 +287,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -285,6 +303,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -300,6 +319,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -315,6 +335,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,
@@ -330,6 +351,7 @@ const initialState = {
           balls: 0,
           fours: 0,
           sixes: 0,
+          hasPlayed: false,
         },
         bowlingStats: {
           overs: 0,

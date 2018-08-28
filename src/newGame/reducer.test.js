@@ -12,6 +12,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -27,6 +28,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -42,6 +44,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -57,6 +60,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -72,6 +76,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -87,6 +92,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -102,6 +108,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -117,6 +124,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -132,6 +140,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -147,6 +156,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -162,6 +172,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -184,6 +195,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -199,6 +211,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -214,6 +227,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -229,6 +243,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -244,6 +259,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -259,6 +275,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -274,6 +291,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -289,6 +307,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -304,6 +323,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -319,6 +339,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
@@ -334,6 +355,7 @@ describe('gameInformation/reducer', () => {
               balls: 0,
               fours: 0,
               sixes: 0,
+              hasPlayed: false,
             },
             bowlingStats: {
               overs: 0,
