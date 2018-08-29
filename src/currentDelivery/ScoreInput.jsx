@@ -78,7 +78,6 @@ const mapDispatchAsProps = (dispatch) => ({
   updateRunsPerOver: (runs) => dispatch(updateRunsPerOver(runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
   updateInningsScore: (runs) => dispatch(updateInningsScore(runs)),
-  createInnings: () => dispatch(createInitialInning()),
   updateInningsBall: () => dispatch(addABall()),
   swapInnings: (finishedInnings) => dispatch(swapInnings(finishedInnings)),
   initializeSecondInnings: () => dispatch(initializeSecondInnings()),
