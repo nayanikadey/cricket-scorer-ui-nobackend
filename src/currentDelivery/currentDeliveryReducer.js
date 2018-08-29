@@ -21,7 +21,7 @@ export const resetCurrentDelivery = () => ({
 const currentDeliveryReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_RUNS': {
-      return { ...state, runs: action.runs };
+      return { ...state, runs: action.runs === state.runs ? NaN : action.runs };
     }
 
     case 'RESET_CURRENT_DELIVERY': {
