@@ -18,12 +18,19 @@ export const isLegalDelivery = (extra) => {
 
 export const gotoNextBall = (props) => {
   if (Number.isNaN(props.runs)) { return; }
-
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
     props.updateInningsScore(props.runs);
-    if (isLegalDelivery(props.extra)) { props.updateInningsBall(); }
-    const extra = !props.extra ? '' : props.extra;
-    props.updateRunsPerOver(props.runs + extra);
+    let overDone = false
+    if (isLegalDelivery(props.extra)) { 
+      overDone = props.inningsInformation.balls % 6 + 1 === 6;
+      props.updateInningsBall(); 
+    }
+    const runsPerOver = [];
+    runsPerOver.push(props.runs);
+    if(props.extra) {
+      runsPerOver.push(props.extra);
+    }
+    props.updateRunsPerOver(overDone, runsPerOver);
   } else if (props.inningsInformation.isFirstInnings) {
     const finishedInnings = props.inningsInformation;
     props.initializeSecondInnings();

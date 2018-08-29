@@ -75,7 +75,7 @@ const mapStateAsProps = (state) => ({
 const mapDispatchAsProps = (dispatch) => ({
   onSelectRuns: (runs) => dispatch(updateRuns(runs)),
   onSelectExtras: (extra) => dispatch(updateExtras(extra)),
-  updateRunsPerOver: (runs) => dispatch(updateRunsPerOver(runs)),
+  updateRunsPerOver: (overDone, runs) => dispatch(updateRunsPerOver(overDone, runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
   updateInningsScore: (runs) => dispatch(updateInningsScore(runs)),
   updateInningsBall: () => dispatch(addABall()),
