@@ -7,7 +7,7 @@ const generateHeaders = headers =>
     <th className="right-borders">{header}</th>
   ));
 
-const renderTableRows = dataValues =>
+export const renderTableRows = dataValues =>
   dataValues.map(sinagleRow => (
     <tr>{sinagleRow.map(data => (<td className={data.className}>{data.value}</td>))}</tr>
   ));
@@ -43,4 +43,4 @@ StatsDetails.propTypes = {
   getDatatoRender: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
 };
 
-export default StatsDetails;
+export { StatsDetails };
