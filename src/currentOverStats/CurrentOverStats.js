@@ -44,7 +44,7 @@ const mapStateAsPropsForCurrentOverStats = (state) => {
   const isOverChanged = CricketUtility.isOverChanged(state.inningsInformation.balls);
   return ({
     bowlerName,
-    runsPerOver:  isOverChanged ? [] : state.currentOverStats.runsPerOver,
+    runsPerOver: isOverChanged ? [] : state.currentOverStats.runsPerOver,
   });
 };
 
