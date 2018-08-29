@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'reactstrap/lib/Button';
+import { Row, Col, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { updateRuns, resetCurrentDelivery, updateExtras } from '../currentDelivery/currentDeliveryReducer';
 import { updateInningsScore, createInitialInning, addABall } from '../innings/inningsReducer'
@@ -7,55 +7,77 @@ import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
-const EXTRAS = ['W', 'Nb' , 'B', 'Lb'];
+const EXTRAS = ['W', 'N', 'B', 'Lb'];
 
 const ScoreInput = (props) => (
-  <div className="col-md-6 offset-md-4">
+  <div>
     <br />
-    {SCORES_POSSIBLE.map((score, index) =>
-      <Button 
-        key={index}
-        value={score}
-        color={props.runs == score ? "success" : "primary"}
-        onClick={(event) => props.onSelectRuns(parseInt(event.target.value) )
-        }>
-        {score}
-      </Button>
-    )}
-    <div>
+    <Row>
+      {SCORES_POSSIBLE.map((score, index) =>
+        <Col md={{ size: 1 }}>
+          <Button
+            outline
+            key={index}
+            value={score}
+            className={props.runs === score ? 'color-green' : 'color-transparent'}
+            color={props.runs === score ? "success" : "secondary"}
+            onClick={(event) => props.onSelectRuns(parseInt(event.target.value, 10))}>
+            {score}
+          </Button>
+        </Col>
+      )}
+    </Row>
     <br />
-    Extras : {EXTRAS.map((score, index) =>
-      <Button 
-        key={index}
-        value={score}
-        color={props.extra == score ? "success" : "primary"}
-        onClick={(event) => props.onSelectExtras(event.target.value)
-        }>
-        {score}
-      </Button>
-    )}
-    <hr/>
-
-    <Button onClick={() => gotoNextBall(props)}> Next Ball </Button>
-  </div>
+    <Row>
+      <Col md={{ size: 2 }} className='my-auto'>
+        Extras :
+      </Col>
+      {EXTRAS.map((score, index) =>
+        <Col md={{ size: 1 }}>
+          <Button
+          outline
+            key={index}
+            value={score}
+            color={props.extra === score ? "success" : "secondary"}
+            className={props.extra === score ? 'color-green' : 'color-transparent'}
+            onClick={(event) => props.onSelectExtras(event.target.value)
+            }>
+            {score}
+          </Button>
+        </Col>
+      )}
+      <hr />
+    </Row>
+    <br />
+    <br />
+    <Row>
+      <Col className='text-center'>
+        <Button 
+          outline
+          onClick={() => gotoNextBall(props)} 
+          color='secondary' 
+          className='large-font-size bold-text'
+          > Next Ball </Button>
+      </Col>
+    </Row>
   </div>
 );
 
 
 const mapStateAsProps = (state) => ({
-  inningsInformation : state.inningsInformation,
-  totalOvers : state.gameInformation.numberOfOvers,
+  inningsInformation: state.inningsInformation,
+  totalOvers: state.gameInformation.numberOfOvers,
   runs: state.currentDelivery.runs,
   extra: state.currentDelivery.extra
 })
 
 const mapDispatchAsProps = (dispatch) => ({
   onSelectRuns: (runs) => dispatch(updateRuns(runs)),
-  onSelectExtras : (extra) => dispatch(updateExtras(extra)),
+  onSelectExtras: (extra) => dispatch(updateExtras(extra)),
   updateRunsPerOver: (runs) => dispatch(updateRunsPerOver(runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
   updateInningsScore: (runs) => dispatch(updateInningsScore(runs)),
-  createInnings : () => dispatch(createInitialInning()),
+  createInnings: () => dispatch(createInitialInning()),
   updateInningsBall: () => dispatch(addABall()),
 })
 
