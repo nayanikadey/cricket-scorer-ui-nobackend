@@ -22,7 +22,12 @@ export const gotoNextBall = (props) => {
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
     props.updateInningsScore(props.runs);
     if (isLegalDelivery(props.extra)) { props.updateInningsBall(); }
-    props.updateRunsPerOver(props.runs + props.extra);
+    const extra = !props.extra ? '' : props.extra;
+    props.updateRunsPerOver(props.runs + extra);
+  } else if (props.inningsInformation.isFirstInnings) {
+    const finishedInnings = props.inningsInformation;
+    props.initializeSecondInnings();
+    props.swapInnings(finishedInnings);
   }
   props.resetCurrentDelivery();
 };

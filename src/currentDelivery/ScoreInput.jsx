@@ -2,9 +2,10 @@ import React from 'react';
 import Button from 'reactstrap/lib/Button';
 import { connect } from 'react-redux';
 import { updateRuns, resetCurrentDelivery, updateExtras } from '../currentDelivery/currentDeliveryReducer';
-import { updateInningsScore, createInitialInning, addABall } from '../innings/inningsReducer'
+import { updateInningsScore, addABall, initializeSecondInnings } from '../innings/inningsReducer'
 import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
+import { swapInnings} from '../newGame/reducer'
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 const EXTRAS = ['W', 'Nb' , 'B', 'Lb'];
@@ -46,7 +47,7 @@ const mapStateAsProps = (state) => ({
   inningsInformation : state.inningsInformation,
   totalOvers : state.gameInformation.numberOfOvers,
   runs: state.currentDelivery.runs,
-  extra: state.currentDelivery.extra
+  extra: state.currentDelivery.extra,
 })
 
 const mapDispatchAsProps = (dispatch) => ({
@@ -55,8 +56,9 @@ const mapDispatchAsProps = (dispatch) => ({
   updateRunsPerOver: (runs) => dispatch(updateRunsPerOver(runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
   updateInningsScore: (runs) => dispatch(updateInningsScore(runs)),
-  createInnings : () => dispatch(createInitialInning()),
   updateInningsBall: () => dispatch(addABall()),
+  swapInnings: (finishedInnings) => dispatch(swapInnings(finishedInnings)),
+  initializeSecondInnings: () => dispatch(initializeSecondInnings()),
 })
 
 

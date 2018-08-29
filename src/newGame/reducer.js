@@ -178,9 +178,9 @@ const initialState = {
         },
       },
     },
-    score: 120,
-    wickets: 4,
-    ballsPlayed: 4,
+    score: 0,
+    wickets: 0,
+    ballsPlayed: 0,
   },
   'Team 2': {
     players: {
@@ -361,8 +361,8 @@ const initialState = {
         },
       },
     },
-    score: 150,
-    wickets: 7,
+    score: 0,
+    wickets: 0,
     ballsPlayed: 0,
   },
   numberOfOvers: 5,
@@ -370,8 +370,27 @@ const initialState = {
   previousTeam: 'Team 2',
 };
 
-const reducer = (state = initialState) => (
-  state
-);
+export const swapInnings = inningsInformation => ({
+  type: 'SWAP_INNINGS',
+  previousInnings: inningsInformation,
+});
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SWAP_INNINGS': {
+      const finishedTeam = state.currentTeam;
+      const newState = Object.assign({}, state);
+      newState.currentTeam = state.previousTeam;
+      newState.previousTeam = finishedTeam;
+      newState[finishedTeam].score = action.previousInnings.totalScore;
+      newState[finishedTeam].wickets = action.previousInnings.wickets;
+      newState[finishedTeam].ballsPlayed = action.previousInnings.balls;
+      return newState;
+    }
+
+    default:
+      return state;
+  }
+};
 
 export default reducer;

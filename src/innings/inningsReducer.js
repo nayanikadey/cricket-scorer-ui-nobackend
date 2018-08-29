@@ -3,9 +3,10 @@ const initialState = {
   totalScore: 0,
   wickets: 0,
   balls: 0,
-  striker: null,
-  nonStriker: null,
+  striker: 'Player1.1',
+  nonStriker: 'Player1.2',
   bowler: 'Player2.11',
+  isFirstInnings: true,
 };
 
 export const updateStriker = striker => ({
@@ -43,6 +44,14 @@ export const createInitialInning = () => ({
   bowler: 'Player2.11',
 });
 
+export const initializeSecondInnings = () => ({
+  type: 'CREATE_SECOND_INNING',
+  striker: 'Player2.1',
+  nonStriker: 'Player2.2',
+  bowler: 'Player1.11',
+});
+
+
 const inningsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_STRIKER': {
@@ -72,6 +81,16 @@ const inningsReducer = (state = initialState, action) => {
     case 'CREATE_INNING': {
       return {
         ...state, striker: action.striker, nonStriker: action.nonStriker, bowler: action.bowler,
+      };
+    }
+
+    case 'CREATE_SECOND_INNING': {
+      return {
+        ...initialState,
+        striker: action.striker,
+        nonStriker: action.nonStriker,
+        bowler: action.bowler,
+        isFirstInnings: false,
       };
     }
     default:

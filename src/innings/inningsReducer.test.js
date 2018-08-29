@@ -1,4 +1,4 @@
-import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addABall, addAWicket, createInitialInning } from './inningsReducer';
+import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addABall, addAWicket, createInitialInning, initializeSecondInnings } from './inningsReducer';
 
 describe('innningsReducer/reducer', () => {
   it('should return initial state for innings', () => {
@@ -6,9 +6,10 @@ describe('innningsReducer/reducer', () => {
       totalScore: 0,
       wickets: 0,
       balls: 0,
-      striker: null,
-      nonStriker: null,
+      striker: 'Player1.1',
+      nonStriker: 'Player1.2',
       bowler: 'Player2.11',
+      isFirstInnings: true,
     };
     expect(inningsReducer(undefined, {})).toEqual(initialState);
   });
@@ -20,9 +21,10 @@ describe('innningsReducer/addScore', () => {
       totalScore: 5,
       wickets: 0,
       balls: 0,
-      striker: null,
-      nonStriker: null,
+      striker: 'Player1.1',
+      nonStriker: 'Player1.2',
       bowler: 'Player2.11',
+      isFirstInnings: true,
     };
 
     expect(inningsReducer(undefined, updateInningsScore(5))).toEqual(initialState);
@@ -36,8 +38,9 @@ describe('innningsReducer/updateStriker', () => {
       wickets: 0,
       balls: 0,
       striker: 'striker',
-      nonStriker: null,
+      nonStriker: 'Player1.2',
       bowler: 'Player2.11',
+      isFirstInnings: true,
     };
 
     expect(inningsReducer(undefined, updateStriker('striker'))).toEqual(initialState);
@@ -50,9 +53,10 @@ describe('innningsReducer/updateNonStriker', () => {
       totalScore: 0,
       wickets: 0,
       balls: 0,
-      striker: null,
+      striker: 'Player1.1',
       nonStriker: 'nonStriker',
       bowler: 'Player2.11',
+      isFirstInnings: true,
     };
 
     expect(inningsReducer(undefined, updateNonStriker('nonStriker'))).toEqual(initialState);
@@ -65,9 +69,10 @@ describe('innningsReducer/updateBowler', () => {
       totalScore: 0,
       wickets: 0,
       balls: 0,
-      striker: null,
-      nonStriker: null,
+      striker: 'Player1.1',
+      nonStriker: 'Player1.2',
       bowler: 'bowler',
+      isFirstInnings: true,
     };
 
     expect(inningsReducer(undefined, updateBowler('bowler'))).toEqual(initialState);
@@ -80,9 +85,10 @@ describe('innningsReducer/addAWicket', () => {
       totalScore: 0,
       wickets: 1,
       balls: 0,
-      striker: null,
-      nonStriker: null,
+      striker: 'Player1.1',
+      nonStriker: 'Player1.2',
       bowler: 'Player2.11',
+      isFirstInnings: true,
     };
 
     expect(inningsReducer(undefined, addAWicket())).toEqual(initialState);
@@ -95,9 +101,10 @@ describe('innningsReducer/addABall', () => {
       totalScore: 0,
       wickets: 0,
       balls: 1,
-      striker: null,
-      nonStriker: null,
+      striker: 'Player1.1',
+      nonStriker: 'Player1.2',
       bowler: 'Player2.11',
+      isFirstInnings: true,
     };
 
     expect(inningsReducer(undefined, addABall())).toEqual(initialState);
@@ -113,9 +120,26 @@ describe('inningsReducer/createInning', () => {
       striker: 'Player1.1',
       nonStriker: 'Player1.2',
       bowler: 'Player2.11',
+      isFirstInnings: true,
     };
 
     expect(inningsReducer(undefined, createInitialInning())).toEqual(initialState);
+  });
+});
+
+describe('inningsReducer/createSecondInning', () => {
+  it('should create the second inning with bowler & batsmen names set from teams', () => {
+    const initialState = {
+      totalScore: 0,
+      wickets: 0,
+      balls: 0,
+      striker: 'Player2.1',
+      nonStriker: 'Player2.2',
+      bowler: 'Player1.11',
+      isFirstInnings: false,
+    };
+
+    expect(inningsReducer(undefined, initializeSecondInnings())).toEqual(initialState);
   });
 });
 
