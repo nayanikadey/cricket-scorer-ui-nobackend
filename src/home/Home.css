@@ -1,7 +1,6 @@
 html, body {
     height: 100%;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    background-color: azure
 }
 
 #root {
@@ -26,4 +25,9 @@ html, body {
 
 .dark-table-header {
     background-color: #b5b5b5;
+}
+
+.background-app-color {
+    background-color: #e8e8ea;
+    height: 100vh;
 }
