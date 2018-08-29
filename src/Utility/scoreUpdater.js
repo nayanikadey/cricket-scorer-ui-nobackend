@@ -5,6 +5,13 @@ export const isBallsLeftToBeBowled = (ballsBowled, totalOvers) => {
   return ballsBowled < totalBallsToBeBowled;
 };
 
+const mapExtrasToCode = {
+  W: 'Wd',
+  N: 'N',
+  B: 'B',
+  Lb: 'Lb',
+};
+
 export const isLegalDelivery = (extra) => {
   switch (extra) {
     case 'W':
@@ -26,9 +33,12 @@ export const gotoNextBall = (props) => {
       props.updateInningsBall();
     }
     const runsPerOver = [];
-    runsPerOver.push(props.runs);
+    //  runsPerOver.push(props.runs);
     if (props.extra) {
-      runsPerOver.push(props.extra);
+      runsPerOver.push((props.runs === 0 ? '' : props.runs) + mapExtrasToCode[props.extra]);
+      //     runsPerOver.push(props.extra);
+    } else {
+      runsPerOver.push(props.runs);
     }
     props.updateRunsPerOver(overDone, runsPerOver);
   } else if (props.inningsInformation.isFirstInnings) {
