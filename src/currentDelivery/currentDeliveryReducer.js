@@ -29,7 +29,7 @@ const currentDeliveryReducer = (state = initialState, action) => {
     }
 
     case 'UPDATE_EXTRAS': {
-      return { ...state, extra: action.extra };
+      return { ...state, extra: state.extra === action.extra ? NaN : action.extra };
     }
 
     default:

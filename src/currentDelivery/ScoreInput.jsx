@@ -36,7 +36,7 @@ const ScoreInput = (props) => (
       {EXTRAS.map((score, index) =>
         <Col md={{ size: 1 }}>
           <Button
-          outline
+            outline
             key={index}
             value={score}
             color={props.extra === score ? "success" : "secondary"}

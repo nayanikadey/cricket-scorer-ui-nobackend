@@ -32,7 +32,7 @@ describe('scoreUpdater/isLegalDelivery', () => {
 
 describe('scoreUpdater/isLegalDelivery', () => {
   it('Expects Invalid delivery if Bowler bowls a No Ball', () => {
-    const extra = 'Nb';
+    const extra = 'N';
     expect(isLegalDelivery(extra)).toEqual(false);
   });
 });

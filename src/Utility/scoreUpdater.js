@@ -9,7 +9,7 @@ export const isLegalDelivery = (extra) => {
   switch (extra) {
     case 'W':
       return false;
-    case 'Nb':
+    case 'N':
       return false;
     default:
       return true;
