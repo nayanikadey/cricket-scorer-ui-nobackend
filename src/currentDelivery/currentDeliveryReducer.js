@@ -1,11 +1,17 @@
 
 const initialState = {
   runs: NaN,
+  extra: NaN,
 };
 
 export const updateRuns = runs => ({
   type: 'UPDATE_RUNS',
   runs,
+});
+
+export const updateExtras = extra => ({
+  type: 'UPDATE_EXTRAS',
+  extra,
 });
 
 export const resetCurrentDelivery = () => ({
@@ -20,6 +26,10 @@ const currentDeliveryReducer = (state = initialState, action) => {
 
     case 'RESET_CURRENT_DELIVERY': {
       return { ...initialState };
+    }
+
+    case 'UPDATE_EXTRAS': {
+      return { ...state, extra: action.extra };
     }
 
     default:

@@ -1,12 +1,13 @@
 import React from 'react';
 import Button from 'reactstrap/lib/Button';
 import { connect } from 'react-redux';
-import { updateRuns, resetCurrentDelivery } from '../currentDelivery/currentDeliveryReducer';
+import { updateRuns, resetCurrentDelivery, updateExtras } from '../currentDelivery/currentDeliveryReducer';
 import { updateInningsScore, createInitialInning, addABall } from '../innings/inningsReducer'
-import CricketUtility from '../Utility/cricketUtility';
 import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
+import { gotoNextBall } from '../Utility/scoreUpdater'
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
+const EXTRAS = ['W', 'Nb' , 'B', 'Lb'];
 
 const ScoreInput = (props) => (
   <div className="col-md-6 offset-md-4">
@@ -21,37 +22,36 @@ const ScoreInput = (props) => (
         {score}
       </Button>
     )}
+    <div>
+    <br />
+    Extras : {EXTRAS.map((score, index) =>
+      <Button 
+        key={index}
+        value={score}
+        color={props.extra == score ? "success" : "primary"}
+        onClick={(event) => props.onSelectExtras(event.target.value)
+        }>
+        {score}
+      </Button>
+    )}
     <hr/>
+
     <Button onClick={() => gotoNextBall(props)}> Next Ball </Button>
   </div>
+  </div>
 );
-
-const gotoNextBall = (props) => {
-  if(props.runs == NaN)
-    return;
-
-  if(isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)){
-    props.updateInningsScore(props.runs);
-    props.updateInningsBall();
-    props.updateRunsPerOver(props.runs);
-  }
-  props.resetCurrentDelivery();
-} 
-
-export const isBallsLeftToBeBowled = (ballsBowled, totalOvers) => {
-  let totalBallsToBeBowled = CricketUtility.getBallsFromOvers(totalOvers);  
-  return ballsBowled < totalBallsToBeBowled;
-}
 
 
 const mapStateAsProps = (state) => ({
   inningsInformation : state.inningsInformation,
   totalOvers : state.gameInformation.numberOfOvers,
-  runs: state.currentDelivery.runs
+  runs: state.currentDelivery.runs,
+  extra: state.currentDelivery.extra
 })
 
 const mapDispatchAsProps = (dispatch) => ({
   onSelectRuns: (runs) => dispatch(updateRuns(runs)),
+  onSelectExtras : (extra) => dispatch(updateExtras(extra)),
   updateRunsPerOver: (runs) => dispatch(updateRunsPerOver(runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
   updateInningsScore: (runs) => dispatch(updateInningsScore(runs)),
