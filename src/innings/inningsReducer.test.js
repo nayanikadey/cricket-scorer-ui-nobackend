@@ -10,6 +10,7 @@ describe('innningsReducer/reducer', () => {
       nonStriker: 'Player1.2',
       bowler: 'Player2.11',
       isFirstInnings: true,
+      displayPopup: false,
     };
     expect(inningsReducer(undefined, {})).toEqual(initialState);
   });
@@ -25,6 +26,7 @@ describe('innningsReducer/addScore', () => {
       nonStriker: 'Player1.2',
       bowler: 'Player2.11',
       isFirstInnings: true,
+      displayPopup: false,
     };
 
     expect(inningsReducer(undefined, updateInningsScore(5))).toEqual(initialState);
@@ -41,6 +43,7 @@ describe('innningsReducer/updateStriker', () => {
       nonStriker: 'Player1.2',
       bowler: 'Player2.11',
       isFirstInnings: true,
+      displayPopup: false,
     };
 
     expect(inningsReducer(undefined, updateStriker('striker'))).toEqual(initialState);
@@ -57,6 +60,7 @@ describe('innningsReducer/updateNonStriker', () => {
       nonStriker: 'nonStriker',
       bowler: 'Player2.11',
       isFirstInnings: true,
+      displayPopup: false,
     };
 
     expect(inningsReducer(undefined, updateNonStriker('nonStriker'))).toEqual(initialState);
@@ -73,6 +77,7 @@ describe('innningsReducer/updateBowler', () => {
       nonStriker: 'Player1.2',
       bowler: 'bowler',
       isFirstInnings: true,
+      displayPopup: false,
     };
 
     expect(inningsReducer(undefined, updateBowler('bowler'))).toEqual(initialState);
@@ -89,6 +94,7 @@ describe('innningsReducer/addAWicket', () => {
       nonStriker: 'Player1.2',
       bowler: 'Player2.11',
       isFirstInnings: true,
+      displayPopup: false,
     };
 
     expect(inningsReducer(undefined, addAWicket())).toEqual(initialState);
@@ -105,6 +111,7 @@ describe('innningsReducer/addABall', () => {
       nonStriker: 'Player1.2',
       bowler: 'Player2.11',
       isFirstInnings: true,
+      displayPopup: false,
     };
 
     expect(inningsReducer(undefined, addABall())).toEqual(initialState);
@@ -121,6 +128,7 @@ describe('inningsReducer/createInning', () => {
       nonStriker: 'Player1.2',
       bowler: 'Player2.11',
       isFirstInnings: true,
+      displayPopup: false,
     };
 
     expect(inningsReducer(undefined, createInitialInning())).toEqual(initialState);
@@ -137,6 +145,7 @@ describe('inningsReducer/createSecondInning', () => {
       nonStriker: 'Player2.2',
       bowler: 'Player1.11',
       isFirstInnings: false,
+      displayPopup: false,
     };
 
     expect(inningsReducer(undefined, initializeSecondInnings())).toEqual(initialState);
