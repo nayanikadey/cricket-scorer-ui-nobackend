@@ -20,14 +20,14 @@ export const gotoNextBall = (props) => {
   if (Number.isNaN(props.runs)) { return; }
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
     props.updateInningsScore(props.runs);
-    let overDone = false
-    if (isLegalDelivery(props.extra)) { 
-      overDone = props.inningsInformation.balls % 6 + 1 === 6;
-      props.updateInningsBall(); 
+    let overDone = false;
+    if (isLegalDelivery(props.extra)) {
+      overDone = (props.inningsInformation.balls % 6) + 1 === 6;
+      props.updateInningsBall();
     }
     const runsPerOver = [];
     runsPerOver.push(props.runs);
-    if(props.extra) {
+    if (props.extra) {
       runsPerOver.push(props.extra);
     }
     props.updateRunsPerOver(overDone, runsPerOver);

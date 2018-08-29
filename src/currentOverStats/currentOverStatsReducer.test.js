@@ -13,10 +13,10 @@ describe('currentOverStats/reducer', () => {
 describe('currentOverStats/updateRunsPerOver', () => {
   it('should push runs to runsPerOver', () => {
     const initialState = {
-      runsPerOver: [5],
+      runsPerOver: [],
       numberOfBallsPlayed: 2,
     };
 
-    expect(currentOverStats(undefined, updateRunsPerOver(5))).toEqual(initialState);
+    expect(currentOverStats(undefined, updateRunsPerOver(1, 5))).toEqual(initialState);
   });
 });

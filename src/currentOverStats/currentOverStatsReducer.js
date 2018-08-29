@@ -5,10 +5,10 @@ const initialState = {
 
 export const updateRunsPerOver = (overDone, runs) => ({
   type: 'UPDATE_RUNS_PER_OVER',
-  data : {
-    overDone: overDone,
-    runs: runs,
-  }
+  data: {
+    overDone,
+    runs,
+  },
 });
 
 const currentOverStatsReducer = (state = initialState, action) => {
