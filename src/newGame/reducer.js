@@ -15,6 +15,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.2': {
@@ -31,6 +32,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.3': {
@@ -47,6 +49,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.4': {
@@ -63,6 +66,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.5': {
@@ -79,6 +83,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.6': {
@@ -95,6 +100,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.7': {
@@ -111,6 +117,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.8': {
@@ -127,6 +134,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.9': {
@@ -143,6 +151,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.10': {
@@ -159,6 +168,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.11': {
@@ -175,6 +185,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
     },
@@ -198,6 +209,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.2': {
@@ -214,6 +226,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.3': {
@@ -230,6 +243,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.4': {
@@ -246,6 +260,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.5': {
@@ -262,6 +277,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.6': {
@@ -278,6 +294,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.7': {
@@ -294,6 +311,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.8': {
@@ -310,6 +328,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.9': {
@@ -326,6 +345,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.10': {
@@ -342,6 +362,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.11': {
@@ -358,6 +379,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
     },
