@@ -3,6 +3,7 @@ import ConnectedCurrentOverStats from "../currentOverStats/CurrentOverStats";
 import ScoreInput from '../currentDelivery/ScoreInput';
 import { ConnectedScoredCardForPlayedTeam, ConnectedScoreBoard } from './Scoreboard';
 import { Container, Row, Col } from 'reactstrap';
+import BowlingModal from '../modal/BowlerModal';
 
 const Scorer = () => (
   <Container>
@@ -13,6 +14,7 @@ const Scorer = () => (
         <ConnectedScoredCardForPlayedTeam />
         <ConnectedCurrentOverStats />
         <ScoreInput />
+        <BowlingModal />
       </Col>
     </Row>
 

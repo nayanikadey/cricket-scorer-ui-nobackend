@@ -7,6 +7,7 @@ const initialState = {
   nonStriker: 'Player1.2',
   bowler: 'Player2.11',
   isFirstInnings: true,
+  displayPopup: false,
 };
 
 export const updateStriker = striker => ({
@@ -35,6 +36,16 @@ export const addAWicket = () => ({
 
 export const addABall = () => ({
   type: 'ADD_A_BALL',
+});
+
+export const chooseBowler = bowler => ({
+  type: 'CHOOSE_BOWLER',
+  bowler,
+});
+
+export const toggleBowlerModal = () => ({
+  type: 'TOGGLE_BOWLER_MODAL',
+
 });
 
 export const createInitialInning = () => ({
@@ -75,7 +86,15 @@ const inningsReducer = (state = initialState, action) => {
     }
 
     case 'ADD_A_BALL': {
-      return { ...state, balls: state.balls + 1 };
+      return { ...state, balls: state.balls + 1, displayPopup: (state.balls + 1) % 6 === 0 };
+    }
+
+    case 'CHOOSE_BOWLER': {
+      return { ...state, displayPopup: (state.balls + 1) % 6 === 0, bowler: action.bowler };
+    }
+
+    case 'TOGGLE_BOWLER_MODAL': {
+      return { ...state, displayPopup: !state.displayPopup };
     }
 
     case 'CREATE_INNING': {
