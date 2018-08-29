@@ -18,6 +18,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.2': {
@@ -34,6 +35,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.3': {
@@ -50,6 +52,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.4': {
@@ -66,6 +69,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.5': {
@@ -82,6 +86,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.6': {
@@ -98,6 +103,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.7': {
@@ -114,6 +120,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.8': {
@@ -130,6 +137,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.9': {
@@ -146,6 +154,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.10': {
@@ -162,6 +171,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.11': {
@@ -178,6 +188,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
       },
@@ -201,6 +212,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.2': {
@@ -217,6 +229,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.3': {
@@ -233,6 +246,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.4': {
@@ -249,6 +263,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.5': {
@@ -265,6 +280,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.6': {
@@ -281,6 +297,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.7': {
@@ -297,6 +314,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.8': {
@@ -313,6 +331,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.9': {
@@ -329,6 +348,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.10': {
@@ -345,6 +365,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.11': {
@@ -361,6 +382,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
       },
