@@ -91,4 +91,16 @@ describe('cricketUtility', () => {
     const balls = CricketUtility.getBallsFromOvers(numberOfOvers);
     expect(30).toEqual(balls);
   });
+
+  it('Expects the over to not change after 5 balls', () => {
+    const numberOfBalls = 5;
+    const isOverChanged = CricketUtility.isOverChanged(numberOfBalls);
+    expect(false).toEqual(isOverChanged);
+  });
+
+  it('Expects the over to change after 6 balls', () => {
+    const numberOfBalls = 6;
+    const isOverChanged = CricketUtility.isOverChanged(numberOfBalls);
+    expect(true).toEqual(isOverChanged);
+  });
 });

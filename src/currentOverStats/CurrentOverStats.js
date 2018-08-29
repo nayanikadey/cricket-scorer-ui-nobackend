@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
+import CricketUtility from '../Utility/cricketUtility';
 
 
 const CurrentOverStats = props => (
@@ -40,10 +41,10 @@ const mapStateAsPropsForCurrentOverStats = (state) => {
   const previousTeamName = state.gameInformation.previousTeam;
   const playerListFromPreviousTeam = state.gameInformation[previousTeamName].players;
   const bowlerName = playerListFromPreviousTeam[state.inningsInformation.bowler].name;
-
+  const isOverChanged = CricketUtility.isOverChanged(state.inningsInformation.balls);
   return ({
     bowlerName,
-    runsPerOver: state.currentOverStats.runsPerOver,
+    runsPerOver:  isOverChanged ? [] : state.currentOverStats.runsPerOver,
   });
 };
 

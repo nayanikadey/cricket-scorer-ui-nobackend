@@ -12,9 +12,13 @@ const currentOverStatsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_RUNS_PER_OVER': {
       const newState = Object.assign({}, state);
-      const runsPerOver = Object.assign([], state.runsPerOver);
-      runsPerOver.push(action.runs);
-      newState.runsPerOver = runsPerOver;
+      if(action.runs == []) {
+        newState.runsPerOver = [];
+      } else {
+        const runsPerOver = Object.assign([], state.runsPerOver);
+        runsPerOver.push(action.runs);
+        newState.runsPerOver = runsPerOver;
+      }
       return newState;
     }
     default:
