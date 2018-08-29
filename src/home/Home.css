@@ -31,3 +31,16 @@ html, body {
     background-color: #e8e8ea;
     height: 100vh;
 }
+
+.large-font-size {
+    font-size: 26px;
+}
+
+.color-green {
+    background-color: #28a745;
+    color: white;
+}
+
+.color-transparent {
+    background-color: transparent;
+}
