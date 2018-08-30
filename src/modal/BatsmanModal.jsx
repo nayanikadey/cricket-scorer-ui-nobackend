@@ -23,17 +23,11 @@ const BatsmanModal = (props) => (
 );
 
 const mapStatesAsProps = (state) => {
-  const currentBatsman = state.inningsInformation.striker
-  const nonStriker = state.inningsInformation.nonStriker
-  const battingTeam = Object.keys(state.gameInformation)
-    .filter(element => element !== 'numberOfOvers'
-      && element !== 'currentTeam'
-      && element !== 'previousTeam'
-      && element !== state.gameInformation.previousTeam
-    );
+  const battingTeam = state.gameInformation.currentTeam;
   const players = Object.keys(state.gameInformation[battingTeam].players)
-    .filter(element => element !== currentBatsman
-    && element !== nonStriker)
+    .filter(element => !state.inningsInformation.batsmans.includes(element)
+      && !state.gameInformation[battingTeam].players[element].battingStats.hasPlayed
+    )
     .map(key => ({
       id: key,
       name: state.gameInformation[battingTeam].players[key].name,

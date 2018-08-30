@@ -107,6 +107,7 @@ const inningsReducer = (state = initialState, action) => {
           }
           return prev;
         }, []),
+        displayBatsmanPopup: true,
       };
     }
 
