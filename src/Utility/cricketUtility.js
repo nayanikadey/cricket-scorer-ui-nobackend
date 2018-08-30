@@ -40,7 +40,7 @@ const CricketUtility = {
     }
   },
 
-  getRunsAfterAddingExtra : (runs, isLegalBall) => runs + parseInt(isLegalBall ? 0 : 1, 10),
+  getRunsAfterAddingExtra: (runs, isLegalBall) => runs + parseInt(isLegalBall ? 0 : 1, 10),
 };
 export default CricketUtility;
 

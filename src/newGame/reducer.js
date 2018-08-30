@@ -404,11 +404,51 @@ export const setBowlerStatus = bowler => ({
   bowler,
 });
 
-// export const updateBatsmanStats = (batsman, currentDelivery) => ({
-//   type: 'UPDATE_BATSMAN_STATS',
-//   batsman,
-//   currentDelivery,
-// });
+function updateBatsmanStats(currentBatsman, batsmanRuns, action) {
+  const updatedCurrentBatsman = Object.assign({}, currentBatsman);
+  updatedCurrentBatsman.battingStats.runs += batsmanRuns;
+  if (batsmanRuns === 4) {
+    updatedCurrentBatsman.battingStats.fours += 1;
+  } else if (batsmanRuns === 6) {
+    updatedCurrentBatsman.battingStats.sixes += 1;
+  }
+  if (CricketUtility.isLegalDelivery(action.currentDelivery.extra)) {
+    updatedCurrentBatsman.battingStats.balls += 1;
+  }
+  return currentBatsman;
+}
+
+function getBowlerStats(action, state, newState) {
+  const player = action.innings.bowler;
+  const bowlingTeam = CricketUtility.getBowlingTeam(state);
+  const playerBowlingStat = newState[bowlingTeam].players[player];
+  return playerBowlingStat;
+}
+
+function updateBowlerStats(action, playerBowlingStat) {
+  const updatedBowlingStat = Object.assign({}, playerBowlingStat);
+  const runs = Number.isNaN(action.currentDelivery.runs) ? 0 : action.currentDelivery.runs;
+  if (CricketUtility.isLegalDelivery(action.currentDelivery.extra)) {
+    updatedBowlingStat.bowlingStats.overs += 1;
+    updatedBowlingStat.bowlingStats.runs += runs;
+  } else {
+    updatedBowlingStat.bowlingStats.runs += runs + 1;
+  }
+  if (action.currentDelivery.wicket) {
+    updatedBowlingStat.bowlingStats.wickets += 1;
+  }
+  return updatedBowlingStat;
+}
+
+function getBatsmanRuns(currentDelivery) {
+  if (!currentDelivery.runs) { return 0; }
+
+  if (!currentDelivery.extra || currentDelivery.extra === 'N') {
+    return currentDelivery.runs;
+  }
+  return 0;
+}
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -434,66 +474,20 @@ const reducer = (state = initialState, action) => {
     case 'NEXT_BALL': {
       const newState = Object.assign({}, state);
       const playerBowlingStat = getBowlerStats(action, state, newState);
-      updateBowlerStats(action, playerBowlingStat);
+      Object.assign(playerBowlingStat, updateBowlerStats(action, playerBowlingStat));
 
       const currentBatsman = newState[newState.currentTeam].players[action.innings.striker];
-      updateBatsmanStats(currentBatsman, getBatsmanRuns(action.currentDelivery), action);
-
-
-
+      Object.assign(currentBatsman, updateBatsmanStats(
+        currentBatsman,
+        getBatsmanRuns(action.currentDelivery), action,
+      ));
       return newState;
     }
 
     default:
       return state;
   }
-
-
 };
 
 export default reducer;
-
-
- function getBatsmanRuns (currentDelivery) {
-  if (!currentDelivery.runs) { return 0; }
-
-  if (!currentDelivery.extra || currentDelivery.extra === 'N') {
-    return currentDelivery.runs;
-  }
-  return 0;
-};
-
-function updateBatsmanStats(currentBatsman, batsmanRuns, action) {
-  currentBatsman.battingStats.runs += batsmanRuns;
-  if (batsmanRuns === 4) {
-    currentBatsman.battingStats.fours += 1;
-  }
-  else if (batsmanRuns === 6) {
-    currentBatsman.battingStats.sixes += 1;
-  }
-  if (CricketUtility.isLegalDelivery(action.currentDelivery.extra)) {
-    currentBatsman.battingStats.balls += 1;
-  }
-}
-
-function getBowlerStats(action, state, newState) {
-  const player = action.innings.bowler;
-  const bowlingTeam = CricketUtility.getBowlingTeam(state);
-  const playerBowlingStat = newState[bowlingTeam].players[player];
-  return playerBowlingStat;
-}
-
-function updateBowlerStats(action, playerBowlingStat) {
-  const runs = Number.isNaN(action.currentDelivery.runs) ? 0 : action.currentDelivery.runs;
-  if (CricketUtility.isLegalDelivery(action.currentDelivery.extra)) {
-    playerBowlingStat.bowlingStats.overs += 1;
-    playerBowlingStat.bowlingStats.runs += runs;
-  }
-  else {
-    playerBowlingStat.bowlingStats.runs += runs + 1;
-  }
-  if (action.currentDelivery.wicket) {
-    playerBowlingStat.bowlingStats.wickets += 1;
-  }
-}
 

@@ -1,3 +1,5 @@
+import CricketUtility from '../Utility/cricketUtility';
+
 
 const initialState = {
   totalScore: 0,
@@ -78,6 +80,30 @@ export const addBatsmanWhenOut = newBatsman => ({
   newBatsman,
 });
 
+const updateWicket = state => ({
+  ...state,
+  wickets: state.wickets + 1,
+  striker: '',
+  batsmans: state.batsmans.reduce((prev, next) => {
+    if (next !== state.striker) {
+      prev.push(next);
+    }
+    return prev;
+  }, []),
+  displayBatsmanPopup: true,
+});
+
+const updateRunsAndBalls = (state, action) => {
+  const isLegal = CricketUtility.isLegalDelivery(action.currentDelivery.extra);
+  let runs = Number.isNaN(action.currentDelivery.runs) ? 0 : action.currentDelivery.runs;
+  if (!isLegal) { runs += 1; }
+  return {
+    ...state,
+    balls: isLegal ? state.balls + 1 : state.balls,
+    totalScore: state.totalScore + runs,
+  };
+};
+
 const inningsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_STRIKER': {
@@ -148,6 +174,13 @@ const inningsReducer = (state = initialState, action) => {
       return newBatsmanState;
     }
 
+    case 'NEXT_BALL': {
+      let nextBallState = updateRunsAndBalls(state, action);
+      if (action.currentDelivery.wicket) { nextBallState = updateWicket(nextBallState); }
+
+      return nextBallState;
+    }
+
     case 'CREATE_SECOND_INNING': {
       return {
         ...initialState,
@@ -161,5 +194,6 @@ const inningsReducer = (state = initialState, action) => {
       return state;
   }
 };
+
 
 export default inningsReducer;

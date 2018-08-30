@@ -1,4 +1,5 @@
 import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addABall, addAWicket, createInitialInning, initializeSecondInnings, swapStriker, addBatsmanWhenOut } from './inningsReducer';
+import { nextBallAction } from '../home/actions';
 
 describe('innningsReducer/reducer', () => {
   it('should return initial state for innings', () => {
@@ -227,6 +228,199 @@ describe('innningsReducer/addBatsmanWhenOut', () => {
       batsmans: ['Player1.2'],
       displayBatsmanPopup: false,
     }, addBatsmanWhenOut('Player1.3'))).toEqual(initialState);
+  });
+});
+
+describe('innningsReducer/nextBall', () => {
+  it('should add a wicket', () => {
+    const initialState = {
+      totalScore: 0,
+      wickets: 1,
+      balls: 0,
+      striker: 'Player1.3',
+      nonStriker: 'Player1.2',
+      bowler: 'Player2.11',
+      isFirstInnings: true,
+      displayPopup: false,
+      batsmans: ['Player1.2', 'Player1.3'],
+      displayBatsmanPopup: false,
+    };
+    expect(inningsReducer({
+      totalScore: 0,
+      wickets: 1,
+      balls: 0,
+      striker: '',
+      nonStriker: 'Player1.2',
+      bowler: 'Player2.11',
+      isFirstInnings: true,
+      displayPopup: false,
+      batsmans: ['Player1.2'],
+      displayBatsmanPopup: false,
+    }, addBatsmanWhenOut('Player1.3'))).toEqual(initialState);
+  });
+});
+
+describe('inningsReducer/nextBall', () => {
+  it('should increment the wickets ', () => {
+    const currentDelivery = {
+      runs: NaN,
+      wicket: true,
+      extra: NaN,
+    };
+
+    const initialState = {
+      totalScore: 0,
+      wickets: 0,
+      balls: 0,
+      striker: 'Player2.1',
+      nonStriker: 'Player2.2',
+      bowler: 'Player1.11',
+      batsmans: ['Player1.2', 'Player1.3'],
+      isFirstInnings: false,
+      displayPopup: false,
+      displayBatsmanPopup: false,
+    };
+
+    const expectedState = {
+      totalScore: 0,
+      wickets: 1,
+      balls: 1,
+      striker: '',
+      nonStriker: 'Player2.2',
+      bowler: 'Player1.11',
+      batsmans: ['Player1.2', 'Player1.3'],
+      isFirstInnings: false,
+      displayPopup: false,
+      displayBatsmanPopup: true,
+    };
+
+    expect(inningsReducer(
+      initialState,
+      nextBallAction({}, currentDelivery),
+    )).toEqual(expectedState);
+  });
+});
+
+describe('inningsReducer/nextBall', () => {
+  it('should increment the wickets ', () => {
+    const currentDelivery = {
+      runs: 5,
+      wicket: false,
+      extra: NaN,
+    };
+
+    const initialState = {
+      totalScore: 10,
+      wickets: 0,
+      balls: 0,
+      striker: 'Player2.1',
+      nonStriker: 'Player2.2',
+      bowler: 'Player1.11',
+      batsmans: ['Player1.2', 'Player1.3'],
+      isFirstInnings: false,
+      displayPopup: false,
+      displayBatsmanPopup: false,
+    };
+
+    const expectedState = {
+      totalScore: 15,
+      wickets: 0,
+      balls: 1,
+      striker: 'Player2.1',
+      nonStriker: 'Player2.2',
+      bowler: 'Player1.11',
+      batsmans: ['Player1.2', 'Player1.3'],
+      isFirstInnings: false,
+      displayPopup: false,
+      displayBatsmanPopup: false,
+    };
+
+    expect(inningsReducer(
+      initialState,
+      nextBallAction({}, currentDelivery),
+    )).toEqual(expectedState);
+  });
+});
+
+describe('inningsReducer/nextBall', () => {
+  it('should increment the wickets ', () => {
+    const currentDelivery = {
+      runs: 5,
+      wicket: false,
+      extra: 'N',
+    };
+
+    const initialState = {
+      totalScore: 0,
+      wickets: 0,
+      balls: 0,
+      striker: 'Player2.1',
+      nonStriker: 'Player2.2',
+      bowler: 'Player1.11',
+      batsmans: ['Player1.2', 'Player1.3'],
+      isFirstInnings: false,
+      displayPopup: false,
+      displayBatsmanPopup: false,
+    };
+
+    const expectedState = {
+      totalScore: 6,
+      wickets: 0,
+      balls: 0,
+      striker: 'Player2.1',
+      nonStriker: 'Player2.2',
+      bowler: 'Player1.11',
+      batsmans: ['Player1.2', 'Player1.3'],
+      isFirstInnings: false,
+      displayPopup: false,
+      displayBatsmanPopup: false,
+    };
+
+    expect(inningsReducer(
+      initialState,
+      nextBallAction({}, currentDelivery),
+    )).toEqual(expectedState);
+  });
+});
+
+describe('inningsReducer/nextBall', () => {
+  it('should increment the wickets ', () => {
+    const currentDelivery = {
+      runs: 5,
+      wicket: false,
+      extra: 'Lb',
+    };
+
+    const initialState = {
+      totalScore: 0,
+      wickets: 0,
+      balls: 0,
+      striker: 'Player2.1',
+      nonStriker: 'Player2.2',
+      bowler: 'Player1.11',
+      batsmans: ['Player1.2', 'Player1.3'],
+      isFirstInnings: false,
+      displayPopup: false,
+      displayBatsmanPopup: false,
+    };
+
+    const expectedState = {
+      totalScore: 5,
+      wickets: 0,
+      balls: 1,
+      striker: 'Player2.1',
+      nonStriker: 'Player2.2',
+      bowler: 'Player1.11',
+      batsmans: ['Player1.2', 'Player1.3'],
+      isFirstInnings: false,
+      displayPopup: false,
+      displayBatsmanPopup: false,
+    };
+
+    expect(inningsReducer(
+      initialState,
+      nextBallAction({}, currentDelivery),
+    )).toEqual(expectedState);
   });
 });
 

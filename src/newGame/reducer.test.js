@@ -432,7 +432,7 @@ describe('gameInformation/reducer', () => {
 
   //   const inningsInformation = {
   //     striker: 'Player1.1',
-  //   }; 
+  //   };
   //   const currentDelivery = {
   //     runs: 4,
   //     extra: 'N',
@@ -455,7 +455,7 @@ describe('gameInformation/reducer', () => {
 
   //   const inningsInformation = {
   //     striker: 'Player1.1',
-  //   }; 
+  //   };
   //   const currentDelivery = {
   //     runs: 4,
   //     extra: 'N',
@@ -478,7 +478,7 @@ describe('gameInformation/reducer', () => {
   //   player2.battingStats.runs = 4;
   //   const inningsInformation = {
   //     striker: 'Player1.1',
-  //   }; 
+  //   };
   //   const currentDelivery = {
   //     runs: 4,
   //     extra: 'N',
@@ -594,6 +594,5 @@ describe('gameInformation/reducer', () => {
   //     expect(getBatsmanRuns(currentDelivery)).toEqual(0);
   //   });
   // });
-
 });
 

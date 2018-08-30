@@ -21,24 +21,19 @@ export const swapStriker = (overDone, runs) => {
 };
 
 
-
 export const gotoNextBall = (props) => {
   if (Number.isNaN(props.runs) && !props.extra && !props.wicket) { return; }
   const runs = Number.isNaN(props.runs) ? 0 : props.runs;
 
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
-    // Refactor | START  
+    // Refactor | START
     props.nextBallAction(props.inningsInformation, props.currentDelivery);
     // Refactor | END
     const isLegalBall = CricketUtility.isLegalDelivery(props.extra);
-    props.updateInningsScore(CricketUtility.getRunsAfterAddingExtra(runs, isLegalBall));
-    if (props.wicket) {
-      props.updateInningsWicket();
-    }
+
     let overDone = false;
     if (isLegalBall) {
       overDone = (props.inningsInformation.balls % 6) + 1 === 6;
-      props.updateInningsBall();
     }
     const runsPerOver = [];
     let runsPerBall = (runs === 0 ? '' : runs);

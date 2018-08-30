@@ -99,7 +99,7 @@ const mapDispatchAsProps = (dispatch) => ({
   swapInnings: (finishedInnings) => dispatch(swapInnings(finishedInnings)),
   initializeSecondInnings: () => dispatch(initializeSecondInnings()),
   updateInningsWicket: () => dispatch(addAWicket()),
-  switchStriker: () => dispatch(swapStriker()),
+  switchStriker: () => dispatch(swapStriker())
 })
 
 
