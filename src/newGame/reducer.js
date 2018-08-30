@@ -454,6 +454,10 @@ function getBatsmanRuns(currentDelivery) {
   return 0;
 }
 
+export const updateHasPlayedForBatsman = (batsman) => ({
+  type: 'UPDATE_BATSMAN_HAS_PAYED',
+  batsman,
+});
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -500,6 +504,11 @@ const reducer = (state = initialState, action) => {
       return gameInitializationState;
     }
 
+    case 'UPDATE_BATSMAN_HAS_PAYED': {
+      const hasPlayedStateObj = Object.assign({}, state);
+      hasPlayedStateObj[hasPlayedStateObj.currentTeam].players[action.batsman].battingStats.hasPlayed = true;
+      return hasPlayedStateObj;
+    }
     default:
       return state;
   }

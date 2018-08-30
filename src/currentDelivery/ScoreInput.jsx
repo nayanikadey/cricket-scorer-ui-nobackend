@@ -7,6 +7,7 @@ import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
 import { swapInnings } from '../newGame/reducer'
 import {nextBallAction} from '../home/actions';
+import {updateHasPlayedForBatsman} from '../newGame/reducer'
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 const EXTRAS = ['W', 'N', 'B', 'Lb'];
@@ -57,7 +58,7 @@ const ScoreInput = (props) => (
         <Button
           outline
           value = 'out'
-          onClick={(event) => props.onSelectOut(event.target.value)}
+          onClick={() => props.onSelectOut(props.inningsInformation.striker)}
           color='secondary'
         > Out </Button>
       </Col>
@@ -91,7 +92,10 @@ const mapDispatchAsProps = (dispatch) => ({
   nextBallAction: (inningsInformation, currentDelivery) => dispatch(nextBallAction(inningsInformation, currentDelivery)),
   onSelectRuns: (runs) => dispatch(updateRuns(runs)),
   onSelectExtras: (extra) => dispatch(updateExtras(extra)),
-  onSelectOut: () => dispatch(updateWicket(true)),
+  onSelectOut: (playerKey) => {
+    dispatch(updateHasPlayedForBatsman(playerKey));
+    dispatch(updateWicket(true))
+  },
   updateRunsPerOver: (overDone, runs) => dispatch(updateRunsPerOver(overDone, runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
   swapInnings: (finishedInnings) => dispatch(swapInnings(finishedInnings)),
