@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { updateRuns, resetCurrentDelivery, updateExtras, updateWicket } from '../currentDelivery/currentDeliveryReducer';
-import { updateInningsScore, addABall, initializeSecondInnings, addAWicket , swapStriker} from '../innings/inningsReducer'
+import { initializeSecondInnings, addAWicket , swapStriker} from '../innings/inningsReducer'
 import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
 import { swapInnings } from '../newGame/reducer'
@@ -94,8 +94,6 @@ const mapDispatchAsProps = (dispatch) => ({
   onSelectOut: () => dispatch(updateWicket(true)),
   updateRunsPerOver: (overDone, runs) => dispatch(updateRunsPerOver(overDone, runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
-  updateInningsScore: (runs) => dispatch(updateInningsScore(runs)),
-  updateInningsBall: () => dispatch(addABall()),
   swapInnings: (finishedInnings) => dispatch(swapInnings(finishedInnings)),
   initializeSecondInnings: () => dispatch(initializeSecondInnings()),
   updateInningsWicket: () => dispatch(addAWicket()),
