@@ -15,7 +15,7 @@ const BatsmanDisplay = (props) =>
                 <Table className='text-center side-borders'>
                     <tr>
                         <th className={props.striker === props.batsmans[0] ? 'color-green right-borders thin-padding' : 'right-borders thin-padding'}>{props.players[props.batsmans[0]].name}</th>
-                        <th className={props.striker === props.batsmans[1] ? 'color-green thin-padding' : 'thin-padding'}>{props.players[props.batsmans[1]].name}</th>
+                        <th className={props.striker === props.batsmans[1] ? 'color-green thin-padding' : 'thin-padding'}>{props.players[props.batsmans[1]] !== undefined ? props.players[props.batsmans[1]].name : 'Batsman Coming...'}</th>
                     </tr>
                 </Table>
             </Col>
