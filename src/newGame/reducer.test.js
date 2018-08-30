@@ -378,12 +378,12 @@ describe('gameInformation/reducer', () => {
   });
 
   it('expects a switch of innings ', () => {
-    const newState = Object.assign({}, initialState);
-    newState.currentTeam = 'Team 2';
-    newState.previousTeam = 'Team 1';
-    newState['Team 1'].score = 190;
-    newState['Team 1'].ballsPlayed = 30;
-    newState['Team 1'].wickets = 5;
+    const newState1 = Object.assign({}, initialState);
+    newState1.currentTeam = 'Team 2';
+    newState1.previousTeam = 'Team 1';
+    newState1['Team 1'].score = 190;
+    newState1['Team 1'].ballsPlayed = 30;
+    newState1['Team 1'].wickets = 5;
     const inningsInformation = {
       totalScore: 190,
       wickets: 5,
@@ -397,7 +397,69 @@ describe('gameInformation/reducer', () => {
       type: 'SWAP_INNINGS',
       previousInnings: inningsInformation,
     };
-    expect(reducer(undefined, action)).toEqual(newState);
+    expect(reducer(undefined, action)).toEqual(newState1);
+  });
+
+  it('expects batsman score to be updated', () => {
+    const newState2 = Object.assign({}, initialState);
+    newState2.currentTeam = 'Team 1';
+    newState2.previousTeam = 'Team 2';
+    let battingStats = newState2['Team 1'].players['Player1.1'].battingStats;
+    battingStats.balls = 1;
+    battingStats.runs = 3;
+
+    const action = {
+      type: 'UPDATE_BATSMAN_STATS',
+      batsman: 'Player1.1',
+      currentDelivery : {
+        runs: 3,
+        extra: NaN,
+        striker: 'Player1.1'
+      }
+    };
+    expect(reducer(undefined, action)).toEqual(newState2);
+  });
+
+  it('expects batsman score to be updated', () => {
+    const newState3 = Object.assign({}, initialState);
+    newState3.currentTeam = 'Team 1';
+    newState3.previousTeam = 'Team 2';
+    let battingStats = newState3['Team 1'].players['Player1.1'].battingStats;
+    battingStats.balls = 0;
+    battingStats.runs = 0;
+
+    const action = {
+      type: 'UPDATE_BATSMAN_STATS',
+      batsman: 'Player1.1',
+      currentDelivery : {
+        runs: 4,
+        extra: 'W',
+        striker: 'Player1.1'
+      }
+    };
+    let actualState = reducer(initialState, action);
+    expect(actualState).toEqual(newState3);
+  });
+
+  it('expects batsman score to be updated', () => {
+    const newState4 = Object.assign({}, initialState);
+    newState4.currentTeam = 'Team 1';
+    newState4.previousTeam = 'Team 2';
+    let battingStats = newState4['Team 1'].players['Player1.1'].battingStats;
+    battingStats.balls = 0;
+    battingStats.runs = 4;
+
+    const action = {
+      type: 'UPDATE_BATSMAN_STATS',
+      batsman: 'Player1.1',
+      currentDelivery : {
+        runs: 4,
+        extra: 'N',
+        striker: 'Player1.1'
+      }
+    };
+    let actualState = reducer(initialState, action);
+    expect(actualState).toEqual(newState4);
   });
 });
 

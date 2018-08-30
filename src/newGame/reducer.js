@@ -1,3 +1,5 @@
+import { getBatsmanRuns, isLegalDelivery } from '../Utility/scoreUpdater'
+
 const initialState = {
   'Team 1': {
     players: {
@@ -375,6 +377,12 @@ export const swapInnings = inningsInformation => ({
   previousInnings: inningsInformation,
 });
 
+export const updateBatsmanStats = (batsman, currentDelivery) => ({
+  type: 'UPDATE_BATSMAN_STATS',
+  batsman,
+  currentDelivery
+});
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SWAP_INNINGS': {
@@ -385,6 +393,21 @@ const reducer = (state = initialState, action) => {
       newState[finishedTeam].score = action.previousInnings.totalScore;
       newState[finishedTeam].wickets = action.previousInnings.wickets;
       newState[finishedTeam].ballsPlayed = action.previousInnings.balls;
+      return newState;
+    }
+    case 'UPDATE_BATSMAN_STATS' : {
+      const newState = Object.assign({}, state);
+      let player = newState[newState.currentTeam].players[action.batsman];
+      const batsmanRuns = getBatsmanRuns(action.currentDelivery);
+      player.battingStats.runs += batsmanRuns;
+      if(batsmanRuns == 4)
+        player.battingStats.fours ++;
+      else if(batsmanRuns == 6)
+        player.battingStats.sixes ++;
+
+      if(isLegalDelivery(action.currentDelivery.extra))
+        player.battingStats.balls++;
+        
       return newState;
     }
 

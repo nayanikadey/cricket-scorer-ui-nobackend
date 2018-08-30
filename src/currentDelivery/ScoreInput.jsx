@@ -5,7 +5,7 @@ import { updateRuns, resetCurrentDelivery, updateExtras } from '../currentDelive
 import { updateInningsScore, addABall, initializeSecondInnings } from '../innings/inningsReducer'
 import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
-import { swapInnings} from '../newGame/reducer'
+import { swapInnings, updateBatsmanStats} from '../newGame/reducer'
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 const EXTRAS = ['W', 'N', 'B', 'Lb'];
@@ -70,6 +70,7 @@ const mapStateAsProps = (state) => ({
   totalOvers: state.gameInformation.numberOfOvers,
   runs: state.currentDelivery.runs,
   extra: state.currentDelivery.extra,
+  currentDelivery : state.currentDelivery
 })
 
 const mapDispatchAsProps = (dispatch) => ({
@@ -81,6 +82,7 @@ const mapDispatchAsProps = (dispatch) => ({
   updateInningsBall: () => dispatch(addABall()),
   swapInnings: (finishedInnings) => dispatch(swapInnings(finishedInnings)),
   initializeSecondInnings: () => dispatch(initializeSecondInnings()),
+  updateBatsmanStats: (batsman, currentDelivery) => dispatch(updateBatsmanStats(batsman, currentDelivery))
 })
 
 
