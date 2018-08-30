@@ -62,6 +62,10 @@ export const initializeSecondInnings = () => ({
   bowler: 'Player1.11',
 });
 
+export const swapStriker = () => ({
+  type: 'SWAP_STRIKER',
+});
+
 
 const inningsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -100,6 +104,12 @@ const inningsReducer = (state = initialState, action) => {
     case 'CREATE_INNING': {
       return {
         ...state, striker: action.striker, nonStriker: action.nonStriker, bowler: action.bowler,
+      };
+    }
+
+    case 'SWAP_STRIKER': {
+      return {
+        ...state, striker: state.nonStriker, nonStriker: state.striker,
       };
     }
 

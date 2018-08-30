@@ -1,4 +1,4 @@
-import { isBallsLeftToBeBowled, isLegalDelivery, getBatsmanRuns } from './scoreUpdater';
+import { isBallsLeftToBeBowled, isLegalDelivery, getBatsmanRuns, swapStriker } from './scoreUpdater';
 
 describe('scoreUpdater/isBallsLeftToBeBowled', () => {
   it('should return true if balls left to be bowled', () => {
@@ -118,5 +118,29 @@ describe('scoreUpdater/getBatsmanRuns', () => {
       extra: 'W',
     };
     expect(getBatsmanRuns(currentDelivery)).toEqual(0);
+  });
+});
+
+describe('scoreUpdater/swapStriker', () => {
+  it('Expects Striker to swap for odd number of runs', () => {
+    expect(swapStriker(false, 3)).toEqual(true);
+  });
+});
+
+describe('scoreUpdater/swapStriker', () => {
+  it('Expects Striker not to swap for even number of runs', () => {
+    expect(swapStriker(false, 4)).toEqual(false);
+  });
+});
+
+describe('scoreUpdater/swapStriker', () => {
+  it('Expects Striker to swap for even number of runs and over change', () => {
+    expect(swapStriker(true, 4)).toEqual(true);
+  });
+});
+
+describe('scoreUpdater/swapStriker', () => {
+  it('Expects Striker not to swap for odd number of runs and over change', () => {
+    expect(swapStriker(true, 5)).toEqual(false);
   });
 });
