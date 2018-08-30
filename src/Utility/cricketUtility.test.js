@@ -104,3 +104,38 @@ describe('cricketUtility', () => {
     expect(true).toEqual(isOverChanged);
   });
 });
+
+describe('scoreUpdater/isLegalDelivery', () => {
+  it('Expects valid delivery if extras is not selected', () => {
+    const extra = NaN;
+    expect(CricketUtility.isLegalDelivery(extra)).toEqual(true);
+  });
+});
+
+describe('scoreUpdater/isLegalDelivery', () => {
+  it('Expects Invalid delivery if Bowler bowls wide', () => {
+    const extra = 'W';
+    expect(CricketUtility.isLegalDelivery(extra)).toEqual(false);
+  });
+});
+
+describe('scoreUpdater/isLegalDelivery', () => {
+  it('Expects Invalid delivery if Bowler bowls a No Ball', () => {
+    const extra = 'N';
+    expect(CricketUtility.isLegalDelivery(extra)).toEqual(false);
+  });
+});
+
+describe('scoreUpdater/isLegalDelivery', () => {
+  it('Expects valid delivery if it is a Bye', () => {
+    const extra = 'B';
+    expect(CricketUtility.isLegalDelivery(extra)).toEqual(true);
+  });
+});
+
+describe('scoreUpdater/isLegalDelivery', () => {
+  it('Expects valid delivery if it is a LegBye', () => {
+    const extra = 'Lb';
+    expect(CricketUtility.isLegalDelivery(extra)).toEqual(true);
+  });
+});
