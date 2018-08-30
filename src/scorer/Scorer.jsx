@@ -5,6 +5,7 @@ import { ConnectedScoredCardForPlayedTeam, ConnectedScoreBoard } from './Scorebo
 import { Container, Row, Col } from 'reactstrap';
 import BowlingModal from '../modal/BowlerModal';
 import BatsmanDisplay from '../currentDelivery/batsmans';
+import BatsmanModal from '../modal/BatsmanModal';
 
 const Scorer = () => (
   <Container>
@@ -17,6 +18,7 @@ const Scorer = () => (
         <BatsmanDisplay />
         <ScoreInput />
         <BowlingModal />
+        <BatsmanModal />
       </Col>
     </Row>
   </Container>

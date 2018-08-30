@@ -9,6 +9,7 @@ const initialState = {
   isFirstInnings: true,
   displayPopup: false,
   batsmans: ['Player1.1', 'Player1.2'],
+  displayBatsmanPopup: false,
 };
 
 export const updateStriker = striker => ({
@@ -46,6 +47,11 @@ export const chooseBowler = bowler => ({
 
 export const toggleBowlerModal = () => ({
   type: 'TOGGLE_BOWLER_MODAL',
+
+});
+
+export const toggleBatsmanModal = () => ({
+  type: 'TOGGLE_BATSMAN_MODAL',
 
 });
 
@@ -114,6 +120,10 @@ const inningsReducer = (state = initialState, action) => {
 
     case 'TOGGLE_BOWLER_MODAL': {
       return { ...state, displayPopup: !state.displayPopup };
+    }
+
+    case 'TOGGLE_BATSMAN_MODAL': {
+      return { ...state, displayBatsmanPopup: !state.displayBatsmanPopup };
     }
 
     case 'CREATE_INNING': {
