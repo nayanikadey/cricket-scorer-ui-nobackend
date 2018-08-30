@@ -12,17 +12,6 @@ const mapExtrasToCode = {
   Lb: 'Lb',
 };
 
-export const isLegalDelivery = (extra) => {
-  switch (extra) {
-    case 'W':
-      return false;
-    case 'N':
-      return false;
-    default:
-      return true;
-  }
-};
-
 export const getBatsmanRuns = (currentDelivery) => {
   if (!currentDelivery.runs) { return 0; }
 
@@ -46,7 +35,7 @@ export const gotoNextBall = (props) => {
   const runs = Number.isNaN(props.runs) ? 0 : props.runs;
 
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
-    const isLegalBall = isLegalDelivery(props.extra);
+    const isLegalBall = CricketUtility.isLegalDelivery(props.extra);
     props.updateInningsScore(getRunsAfterAddingExtra(runs, isLegalBall));
     props.updateBatsmanStats(props.inningsInformation.striker, props.currentDelivery);
     if (props.wicket) {

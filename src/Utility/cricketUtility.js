@@ -28,6 +28,17 @@ const CricketUtility = {
           && element !== 'previousTeam'
           && element !== gameInformation.currentTeam)
   ),
+
+  isLegalDelivery: (extra) => {
+    switch (extra) {
+      case 'W':
+        return false;
+      case 'N':
+        return false;
+      default:
+        return true;
+    }
+  },
 };
 export default CricketUtility;
 

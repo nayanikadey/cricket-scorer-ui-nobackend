@@ -1,6 +1,6 @@
 import CricketUtility from '../Utility/cricketUtility';
 
-import { getBatsmanRuns, isLegalDelivery } from '../Utility/scoreUpdater';
+import { getBatsmanRuns } from '../Utility/scoreUpdater';
 
 const initialState = {
   'Team 1': {
@@ -441,7 +441,7 @@ const reducer = (state = initialState, action) => {
       } else if (batsmanRuns === 6) {
         player.battingStats.sixes += 1;
       }
-      if (isLegalDelivery(action.currentDelivery.extra)) {
+      if (CricketUtility.isLegalDelivery(action.currentDelivery.extra)) {
         player.battingStats.balls += 1;
       }
 
@@ -453,7 +453,7 @@ const reducer = (state = initialState, action) => {
       const bowlingTeam = CricketUtility.getBowlingTeam(state);
       const newState = Object.assign({}, state);
       const playerBowlingStat = newState[bowlingTeam].players[player];
-      if (isLegalDelivery(action.extra)) {
+      if (CricketUtility.isLegalDelivery(action.extra)) {
         playerBowlingStat.bowlingStats.overs += 1;
       }
       const extraRuns = Number.isNaN(action.extra) || typeof action.extra === 'string' ? 0 : action.extra;
