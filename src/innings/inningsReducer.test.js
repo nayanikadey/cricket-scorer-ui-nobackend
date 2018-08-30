@@ -1,4 +1,4 @@
-import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addABall, addAWicket, createInitialInning, initializeSecondInnings, swapStriker, addBatsmanWhenOut } from './inningsReducer';
+import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addAWicket, createInitialInning, initializeSecondInnings, swapStriker, addBatsmanWhenOut } from './inningsReducer';
 import { nextBallAction } from '../home/actions';
 
 describe('innningsReducer/reducer', () => {
@@ -111,25 +111,6 @@ describe('innningsReducer/addAWicket', () => {
     };
 
     expect(inningsReducer(undefined, addAWicket())).toEqual(initialState);
-  });
-});
-
-describe('innningsReducer/addABall', () => {
-  it('should update the balls', () => {
-    const initialState = {
-      totalScore: 0,
-      wickets: 0,
-      balls: 1,
-      striker: 'Player1.1',
-      nonStriker: 'Player1.2',
-      bowler: 'Player2.11',
-      isFirstInnings: true,
-      displayPopup: false,
-      batsmans: ['Player1.1', 'Player1.2'],
-      displayBatsmanPopup: false,
-    };
-
-    expect(inningsReducer(undefined, addABall())).toEqual(initialState);
   });
 });
 
