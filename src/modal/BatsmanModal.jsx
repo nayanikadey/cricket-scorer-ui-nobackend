@@ -31,7 +31,6 @@ const mapStatesAsProps = (state) => {
       && element !== 'previousTeam'
       && element !== state.gameInformation.previousTeam
     );
-    debugger
   const players = Object.keys(state.gameInformation[battingTeam].players)
     .filter(element => element !== currentBatsman
     && element !== nonStriker)
