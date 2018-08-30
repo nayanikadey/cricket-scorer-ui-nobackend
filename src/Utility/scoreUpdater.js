@@ -49,17 +49,17 @@ export const gotoNextBall = (props) => {
       props.updateInningsBall();
     }
     const runsPerOver = [];
-    let runsA = (runs === 0 ? '' : runs);
+    let runsPerBall = (runs === 0 ? '' : runs);
     // runsPerOver.push((runs === 0 ? '' : runs));
     if (props.extra) {
-      runsA += (mapExtrasToCode[props.extra]);
+      runsPerBall += (mapExtrasToCode[props.extra]);
     }
     if (props.wicket) {
-      runsA += 'Wk';
+      runsPerBall += 'Wk';
     }
-    runsPerOver.push(runsA);
+    runsPerOver.push(runsPerBall);
     props.updateRunsPerOver(overDone, runsPerOver);
-    props.updateBowlerStats(props.inningsInformation, props.runs, props.extra);
+    props.updateBowlerStats(props.inningsInformation, runs, props.extra);
   } else if (props.inningsInformation.isFirstInnings) {
     const finishedInnings = props.inningsInformation;
     props.initializeSecondInnings();
