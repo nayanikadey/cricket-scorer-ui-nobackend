@@ -8,3 +8,8 @@ export const createGameAction = () => (dispatch) => {
   history.push(Routes.NEW_GAME);
 };
 
+export const nextBallAction = (innings, currentDelivery) => ({
+  type: 'NEXT_BALL',
+  innings,
+  currentDelivery,
+});
