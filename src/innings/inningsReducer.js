@@ -38,10 +38,6 @@ export const addAWicket = () => ({
   type: 'ADD_A_WICKET',
 });
 
-export const addABall = () => ({
-  type: 'ADD_A_BALL',
-});
-
 export const chooseBowler = bowler => ({
   type: 'CHOOSE_BOWLER',
   bowler,
@@ -101,6 +97,7 @@ const updateRunsAndBalls = (state, action) => {
     ...state,
     balls: isLegal ? state.balls + 1 : state.balls,
     totalScore: state.totalScore + runs,
+    displayPopup: (state.balls + 1) % 6 === 0,
   };
 };
 
@@ -135,10 +132,6 @@ const inningsReducer = (state = initialState, action) => {
         }, []),
         displayBatsmanPopup: true,
       };
-    }
-
-    case 'ADD_A_BALL': {
-      return { ...state, balls: state.balls + 1, displayPopup: (state.balls + 1) % 6 === 0 };
     }
 
     case 'CHOOSE_BOWLER': {
