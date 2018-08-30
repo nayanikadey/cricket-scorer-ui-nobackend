@@ -391,7 +391,7 @@ const initialState = {
     wickets: 0,
     ballsPlayed: 0,
   },
-  numberOfOvers: 1,
+  numberOfOvers: 5,
   currentTeam: 'Team 1',
   previousTeam: 'Team 2',
 };
