@@ -5,13 +5,6 @@ export const isBallsLeftToBeBowled = (ballsBowled, totalOvers) => {
   return ballsBowled < totalBallsToBeBowled;
 };
 
-const mapExtrasToCode = {
-  W: 'Wd',
-  N: 'N',
-  B: 'B',
-  Lb: 'Lb',
-};
-
 
 export const swapStriker = (overDone, runs) => {
   let swaps = runs;
@@ -26,26 +19,13 @@ export const gotoNextBall = (props) => {
   const runs = Number.isNaN(props.runs) ? 0 : props.runs;
 
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
-    // Refactor | START
     props.nextBallAction(props.inningsInformation, props.currentDelivery);
-    // Refactor | END
-    const isLegalBall = CricketUtility.isLegalDelivery(props.extra);
+
 
     let overDone = false;
-    if (isLegalBall) {
+    if (CricketUtility.isLegalDelivery(props.extra)) {
       overDone = (props.inningsInformation.balls % 6) + 1 === 6;
     }
-    const runsPerOver = [];
-    let runsPerBall = (runs === 0 ? '' : runs);
-    // runsPerOver.push((runs === 0 ? '' : runs));
-    if (props.extra) {
-      runsPerBall += (mapExtrasToCode[props.extra]);
-    }
-    if (props.wicket) {
-      runsPerBall += 'Wk';
-    }
-    runsPerOver.push(runsPerBall);
-    props.updateRunsPerOver(overDone, runsPerOver);
     if (swapStriker(overDone, runs)) { props.switchStriker(); }
   } else if (props.inningsInformation.isFirstInnings) {
     const finishedInnings = props.inningsInformation;
