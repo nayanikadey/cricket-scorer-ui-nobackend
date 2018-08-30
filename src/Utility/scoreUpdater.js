@@ -32,6 +32,13 @@ export const getBatsmanRuns = (currentDelivery) => {
   return 0;
 };
 
+export const swapStriker = (overDone, runs) => {
+  let swaps = runs;
+  if (overDone) { swaps += 1; }
+  if (swaps % 2 === 1) { return true; }
+  return false;
+};
+
 export const gotoNextBall = (props) => {
   if (Number.isNaN(props.runs) && !props.extra && !props.wicket) { return; }
   const runs = Number.isNaN(props.runs) ? 0 : props.runs;
@@ -60,6 +67,7 @@ export const gotoNextBall = (props) => {
     runsPerOver.push(runsPerBall);
     props.updateRunsPerOver(overDone, runsPerOver);
     props.updateBowlerStats(props.inningsInformation, runs, props.extra);
+    if (swapStriker(overDone, runs)) { props.switchStriker(); }
   } else if (props.inningsInformation.isFirstInnings) {
     const finishedInnings = props.inningsInformation;
     props.initializeSecondInnings();
@@ -67,3 +75,4 @@ export const gotoNextBall = (props) => {
   }
   props.resetCurrentDelivery();
 };
+
