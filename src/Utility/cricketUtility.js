@@ -20,6 +20,14 @@ const CricketUtility = {
 
   // method to change when extras will be implemented
   isOverChanged: numberOfBallsPlayed => (numberOfBallsPlayed % 6 === 0),
+
+  getBowlingTeam: gameInformation => (
+    Object.keys(gameInformation)
+      .filter(element => element !== 'numberOfOvers'
+          && element !== 'currentTeam'
+          && element !== 'previousTeam'
+          && element !== gameInformation.currentTeam)
+  ),
 };
 export default CricketUtility;
 

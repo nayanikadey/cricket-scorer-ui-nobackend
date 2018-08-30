@@ -1,11 +1,19 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { updateRuns, resetCurrentDelivery, updateExtras } from '../currentDelivery/currentDeliveryReducer';
 import { updateInningsScore, addABall, initializeSecondInnings, swapStriker } from '../innings/inningsReducer'
 import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
 import { swapInnings, updateBatsmanStats } from '../newGame/reducer'
+=======
+import { updateRuns, resetCurrentDelivery, updateExtras, updateWicket } from '../currentDelivery/currentDeliveryReducer';
+import { updateInningsScore, addABall, initializeSecondInnings, addAWicket } from '../innings/inningsReducer'
+import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
+import { gotoNextBall } from '../Utility/scoreUpdater'
+import { swapInnings, updateBowlerStats, updateBatsmanStats} from '../newGame/reducer'
+>>>>>>> 606b9f5433b8c9dc43c1b9545015958a1dc0d72a
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 const EXTRAS = ['W', 'N', 'B', 'Lb'];
@@ -55,6 +63,8 @@ const ScoreInput = (props) => (
       <Col className='text-center'>
         <Button
           outline
+          value = 'out'
+          onClick={(event) => props.onSelectOut(event.target.value)}
           color='secondary'
         > Out </Button>
       </Col>
@@ -80,20 +90,24 @@ const mapStateAsProps = (state) => ({
   totalOvers: state.gameInformation.numberOfOvers,
   runs: state.currentDelivery.runs,
   extra: state.currentDelivery.extra,
-  currentDelivery : state.currentDelivery
+  currentDelivery : state.currentDelivery,
+  wicket: state.currentDelivery.wicket,
 })
 
 const mapDispatchAsProps = (dispatch) => ({
   onSelectRuns: (runs) => dispatch(updateRuns(runs)),
   onSelectExtras: (extra) => dispatch(updateExtras(extra)),
+  onSelectOut: () => dispatch(updateWicket(true)),
   updateRunsPerOver: (overDone, runs) => dispatch(updateRunsPerOver(overDone, runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
   updateInningsScore: (runs) => dispatch(updateInningsScore(runs)),
   updateInningsBall: () => dispatch(addABall()),
   swapInnings: (finishedInnings) => dispatch(swapInnings(finishedInnings)),
   initializeSecondInnings: () => dispatch(initializeSecondInnings()),
+  updateBowlerStats : (inningsInformation, runs, extra) => dispatch(updateBowlerStats(inningsInformation, runs, extra)),
   updateBatsmanStats: (batsman, currentDelivery) => dispatch(updateBatsmanStats(batsman, currentDelivery)),
-  switchStriker: () => dispatch(swapStriker())
+  updateInningsWicket: () => dispatch(addAWicket()),
+  switchStriker: () => dispatch(swapStriker()),
 })
 
 

@@ -1,3 +1,5 @@
+import CricketUtility from '../Utility/cricketUtility';
+
 import { getBatsmanRuns, isLegalDelivery } from '../Utility/scoreUpdater';
 
 const initialState = {
@@ -381,7 +383,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
-          hasBowled: false,
+          hasBowled: true,
         },
       },
     },
@@ -397,6 +399,18 @@ const initialState = {
 export const swapInnings = inningsInformation => ({
   type: 'SWAP_INNINGS',
   previousInnings: inningsInformation,
+});
+
+export const updateBowlerStats = (inningsInformation, runs, extra) => ({
+  type: 'UPDATE_BOWLER_STATS',
+  innings: inningsInformation,
+  runs,
+  extra,
+});
+
+export const setBowlerStatus = bowler => ({
+  type: 'SET_BOWLER_STATUS',
+  bowler,
 });
 
 export const updateBatsmanStats = (batsman, currentDelivery) => ({
@@ -431,6 +445,27 @@ const reducer = (state = initialState, action) => {
         player.battingStats.balls += 1;
       }
 
+      return newState;
+    }
+
+    case 'UPDATE_BOWLER_STATS': {
+      const player = action.innings.bowler;
+      const bowlingTeam = CricketUtility.getBowlingTeam(initialState);
+      const newState = Object.assign({}, state);
+      const playerBowlingStat = newState[bowlingTeam].players[player];
+      if (isLegalDelivery(action.extra)) {
+        playerBowlingStat.bowlingStats.overs += 1;
+      }
+      const extraRuns = Number.isNaN(action.extra) ? 0 : action.extra;
+      playerBowlingStat.bowlingStats.runs += action.runs + extraRuns;
+      return newState;
+    }
+
+    case 'SET_BOWLER_STATUS': {
+      const bowlingTeam = CricketUtility.getBowlingTeam(initialState);
+      const newState = Object.assign({}, state);
+      const playerBowlingStat = newState[bowlingTeam].players[action.bowler];
+      playerBowlingStat.bowlingStats.hasBowled = true;
       return newState;
     }
 

@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { toggleBowlerModal, chooseBowler } from '../innings/inningsReducer'
+import CricketUtility from '../Utility/cricketUtility';
+import { setBowlerStatus } from '../newGame/reducer';
 
 const BowlerModal = (props) => (
   <div>
@@ -24,12 +26,7 @@ const BowlerModal = (props) => (
 
 const mapStatesAsProps = (state) => {
   const currentBowler = state.inningsInformation.bowler;
-  const bowlingTeam = Object.keys(state.gameInformation)
-    .filter(element => element !== 'numberOfOvers'
-      && element !== 'currentTeam'
-      && element !== 'previousTeam'
-      && element !== state.gameInformation.currentTeam
-    );
+  const bowlingTeam = CricketUtility.getBowlingTeam(state.gameInformation);
   const players = Object.keys(state.gameInformation[bowlingTeam].players)
     .reverse()
     .filter(element => element !== currentBowler)
@@ -46,7 +43,10 @@ const mapStatesAsProps = (state) => {
 
 const mapDispatcherAsProps = (dispatch) => ({
   toggleModal: () => dispatch(toggleBowlerModal()),
-  updateCurrentBowler: (bowler) => dispatch(chooseBowler(bowler))
+  updateCurrentBowler: (bowler) => {
+    dispatch(chooseBowler(bowler));
+    dispatch(setBowlerStatus(bowler));
+  }
 });
 
 export default connect(mapStatesAsProps, mapDispatcherAsProps)(BowlerModal);

@@ -5,6 +5,7 @@ describe('currentDelivery/reducer', () => {
     const initialState = {
       runs: NaN,
       extra: NaN,
+      wicket: false,
     };
     expect(currentDeliveryReducer(undefined, {})).toEqual(initialState);
   });
