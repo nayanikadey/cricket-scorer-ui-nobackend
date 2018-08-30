@@ -68,7 +68,6 @@ export const gotoNextBall = (props) => {
     }
     runsPerOver.push(runsPerBall);
     props.updateRunsPerOver(overDone, runsPerOver);
-    props.updateBowlerStats(props.inningsInformation, runs, props.extra);
     if (swapStriker(overDone, runs)) { props.switchStriker(); }
     props.updateBowlerStats(
       props.inningsInformation,
