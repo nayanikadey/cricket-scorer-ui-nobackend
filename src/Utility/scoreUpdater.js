@@ -12,14 +12,6 @@ const mapExtrasToCode = {
   Lb: 'Lb',
 };
 
-export const getBatsmanRuns = (currentDelivery) => {
-  if (!currentDelivery.runs) { return 0; }
-
-  if (!currentDelivery.extra || currentDelivery.extra === 'N') {
-    return currentDelivery.runs;
-  }
-  return 0;
-};
 
 export const swapStriker = (overDone, runs) => {
   let swaps = runs;
@@ -40,7 +32,6 @@ export const gotoNextBall = (props) => {
     // Refactor | END
     const isLegalBall = CricketUtility.isLegalDelivery(props.extra);
     props.updateInningsScore(CricketUtility.getRunsAfterAddingExtra(runs, isLegalBall));
-    props.updateBatsmanStats(props.inningsInformation.striker, props.currentDelivery);
     if (props.wicket) {
       props.updateInningsWicket();
     }

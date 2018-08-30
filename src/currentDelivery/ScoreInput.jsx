@@ -5,7 +5,7 @@ import { updateRuns, resetCurrentDelivery, updateExtras, updateWicket } from '..
 import { updateInningsScore, addABall, initializeSecondInnings, addAWicket , swapStriker} from '../innings/inningsReducer'
 import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
-import { swapInnings, updateBowlerStats, updateBatsmanStats} from '../newGame/reducer'
+import { swapInnings } from '../newGame/reducer'
 import {nextBallAction} from '../home/actions';
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -98,8 +98,6 @@ const mapDispatchAsProps = (dispatch) => ({
   updateInningsBall: () => dispatch(addABall()),
   swapInnings: (finishedInnings) => dispatch(swapInnings(finishedInnings)),
   initializeSecondInnings: () => dispatch(initializeSecondInnings()),
- // updateBowlerStats : (inningsInformation, runs, extra) => dispatch(updateBowlerStats(inningsInformation, runs, extra)),
-  updateBatsmanStats: (batsman, currentDelivery) => dispatch(updateBatsmanStats(batsman, currentDelivery)),
   updateInningsWicket: () => dispatch(addAWicket()),
   switchStriker: () => dispatch(swapStriker()),
 })
