@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import CricketUtility from '../Utility/cricketUtility';
 import { HashLink as Link } from 'react-router-hash-link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowCircleRight, faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons'
+import { faTable, faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons'
 
 // Condition 1 : Check for previous played
 // Cond 2 :      display team scores
@@ -29,7 +29,7 @@ const arrow_rigth = (props) => {
     return(<Col md={{size: 1}}>
       <div className='text-right'>
         <Link to="/gameDetails" className='link-arrow'>
-          <FontAwesomeIcon icon={faArrowCircleRight} />
+          <FontAwesomeIcon icon={faTable} id='ScoreCardToolTip' />
         </Link>
       </div>
     </Col>);

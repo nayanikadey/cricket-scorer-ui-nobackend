@@ -456,8 +456,9 @@ const reducer = (state = initialState, action) => {
       if (isLegalDelivery(action.extra)) {
         playerBowlingStat.bowlingStats.overs += 1;
       }
-      const extraRuns = Number.isNaN(action.extra) ? 0 : action.extra;
-      playerBowlingStat.bowlingStats.runs += action.runs + extraRuns;
+      const extraRuns = Number.isNaN(action.extra) || typeof action.extra === 'string' ? 0 : action.extra;
+      const runs = Number.isNaN(action.runs) ? 0 : action.runs;
+      playerBowlingStat.bowlingStats.runs += runs + extraRuns;
       return newState;
     }
 

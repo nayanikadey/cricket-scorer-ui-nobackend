@@ -1,4 +1,4 @@
-import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addABall, addAWicket, createInitialInning, initializeSecondInnings, swapStriker } from './inningsReducer';
+import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addABall, addAWicket, createInitialInning, initializeSecondInnings, swapStriker, addBatsmanWhenOut } from './inningsReducer';
 
 describe('innningsReducer/reducer', () => {
   it('should return initial state for innings', () => {
@@ -11,6 +11,7 @@ describe('innningsReducer/reducer', () => {
       bowler: 'Player2.11',
       isFirstInnings: true,
       displayPopup: false,
+      batsmans: ['Player1.1', 'Player1.2'],
     };
     expect(inningsReducer(undefined, {})).toEqual(initialState);
   });
@@ -27,6 +28,7 @@ describe('innningsReducer/addScore', () => {
       bowler: 'Player2.11',
       isFirstInnings: true,
       displayPopup: false,
+      batsmans: ['Player1.1', 'Player1.2'],
     };
 
     expect(inningsReducer(undefined, updateInningsScore(5))).toEqual(initialState);
@@ -44,6 +46,7 @@ describe('innningsReducer/updateStriker', () => {
       bowler: 'Player2.11',
       isFirstInnings: true,
       displayPopup: false,
+      batsmans: ['Player1.1', 'Player1.2'],
     };
 
     expect(inningsReducer(undefined, updateStriker('striker'))).toEqual(initialState);
@@ -61,6 +64,7 @@ describe('innningsReducer/updateNonStriker', () => {
       bowler: 'Player2.11',
       isFirstInnings: true,
       displayPopup: false,
+      batsmans: ['Player1.1', 'Player1.2'],
     };
 
     expect(inningsReducer(undefined, updateNonStriker('nonStriker'))).toEqual(initialState);
@@ -78,6 +82,7 @@ describe('innningsReducer/updateBowler', () => {
       bowler: 'bowler',
       isFirstInnings: true,
       displayPopup: false,
+      batsmans: ['Player1.1', 'Player1.2'],
     };
 
     expect(inningsReducer(undefined, updateBowler('bowler'))).toEqual(initialState);
@@ -90,11 +95,12 @@ describe('innningsReducer/addAWicket', () => {
       totalScore: 0,
       wickets: 1,
       balls: 0,
-      striker: 'Player1.1',
+      striker: '',
       nonStriker: 'Player1.2',
       bowler: 'Player2.11',
       isFirstInnings: true,
       displayPopup: false,
+      batsmans: ['Player1.2'],
     };
 
     expect(inningsReducer(undefined, addAWicket())).toEqual(initialState);
@@ -112,6 +118,7 @@ describe('innningsReducer/addABall', () => {
       bowler: 'Player2.11',
       isFirstInnings: true,
       displayPopup: false,
+      batsmans: ['Player1.1', 'Player1.2'],
     };
 
     expect(inningsReducer(undefined, addABall())).toEqual(initialState);
@@ -129,6 +136,7 @@ describe('inningsReducer/createInning', () => {
       bowler: 'Player2.11',
       isFirstInnings: true,
       displayPopup: false,
+      batsmans: ['Player1.1', 'Player1.2'],
     };
 
     expect(inningsReducer(undefined, createInitialInning())).toEqual(initialState);
@@ -146,6 +154,7 @@ describe('inningsReducer/createSecondInning', () => {
       bowler: 'Player1.11',
       isFirstInnings: false,
       displayPopup: false,
+      batsmans: ['Player1.1', 'Player1.2'],
     };
 
     expect(inningsReducer(undefined, initializeSecondInnings())).toEqual(initialState);
@@ -177,6 +186,34 @@ describe('inningsReducer/createSecondInning', () => {
 
       expect(inningsReducer(initialState, swapStriker())).toEqual(expectedState);
     });
+  });
+});
+
+
+describe('innningsReducer/addBatsmanWhenOut', () => {
+  it('should set the new batsman as a striker and add the new batsman in the list of batsmans', () => {
+    const initialState = {
+      totalScore: 0,
+      wickets: 1,
+      balls: 0,
+      striker: 'Player1.3',
+      nonStriker: 'Player1.2',
+      bowler: 'Player2.11',
+      isFirstInnings: true,
+      displayPopup: false,
+      batsmans: ['Player1.2', 'Player1.3'],
+    };
+    expect(inningsReducer({
+      totalScore: 0,
+      wickets: 1,
+      balls: 0,
+      striker: '',
+      nonStriker: 'Player1.2',
+      bowler: 'Player2.11',
+      isFirstInnings: true,
+      displayPopup: false,
+      batsmans: ['Player1.2'],
+    }, addBatsmanWhenOut('Player1.3'))).toEqual(initialState);
   });
 });
 

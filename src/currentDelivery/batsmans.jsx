@@ -14,8 +14,8 @@ const BatsmanDisplay = (props) =>
             <Col md={{size: 8, offset: 2}}>
                 <Table className='text-center side-borders'>
                     <tr>
-                        <th className='color-green right-borders thin-padding'>{props.striker}</th>
-                        <th className='thin-padding'>{props.nonStriker}</th>
+                        <th className={props.striker === props.batsmans[0] ? 'color-green right-borders thin-padding' : 'right-borders thin-padding'}>{props.players[props.batsmans[0]].name}</th>
+                        <th className={props.striker === props.batsmans[1] ? 'color-green thin-padding' : 'thin-padding'}>{props.players[props.batsmans[1]].name}</th>
                     </tr>
                 </Table>
             </Col>
@@ -24,8 +24,9 @@ const BatsmanDisplay = (props) =>
 
 const mapStateAsProps = (state) => {
     return ({
+        batsmans: state.inningsInformation.batsmans,
         striker: state.inningsInformation.striker,
-        nonStriker: state.inningsInformation.nonStriker,
+        players: state.gameInformation[state.gameInformation.currentTeam].players,
     })
 };
 

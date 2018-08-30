@@ -8,6 +8,7 @@ const initialState = {
   bowler: 'Player2.11',
   isFirstInnings: true,
   displayPopup: false,
+  batsmans: ['Player1.1', 'Player1.2'],
 };
 
 export const updateStriker = striker => ({
@@ -66,6 +67,10 @@ export const swapStriker = () => ({
   type: 'SWAP_STRIKER',
 });
 
+export const addBatsmanWhenOut = newBatsman => ({
+  type: 'ADD_BATSMAN_WHEN_OUT',
+  newBatsman,
+});
 
 const inningsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -86,7 +91,17 @@ const inningsReducer = (state = initialState, action) => {
     }
 
     case 'ADD_A_WICKET': {
-      return { ...state, wickets: state.wickets + 1 };
+      return {
+        ...state,
+        wickets: state.wickets + 1,
+        striker: '',
+        batsmans: state.batsmans.reduce((prev, next) => {
+          if (next !== state.striker) {
+            prev.push(next);
+          }
+          return prev;
+        }, []),
+      };
     }
 
     case 'ADD_A_BALL': {
@@ -111,6 +126,15 @@ const inningsReducer = (state = initialState, action) => {
       return {
         ...state, striker: state.nonStriker, nonStriker: state.striker,
       };
+    }
+
+    case 'ADD_BATSMAN_WHEN_OUT': {
+      const newBatsmanState = Object.assign({}, state);
+      if (newBatsmanState.batsmans.length !== 2) {
+        newBatsmanState.batsmans.push(action.newBatsman);
+        newBatsmanState.striker = action.newBatsman;
+      }
+      return newBatsmanState;
     }
 
     case 'CREATE_SECOND_INNING': {
