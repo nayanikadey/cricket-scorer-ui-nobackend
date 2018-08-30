@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { updateRuns, resetCurrentDelivery, updateExtras } from '../currentDelivery/currentDeliveryReducer';
-import { updateInningsScore, addABall, initializeSecondInnings } from '../innings/inningsReducer'
+import { updateRuns, resetCurrentDelivery, updateExtras, updateWicket } from '../currentDelivery/currentDeliveryReducer';
+import { updateInningsScore, addABall, initializeSecondInnings, addAWicket } from '../innings/inningsReducer'
 import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
 import { swapInnings, updateBatsmanStats} from '../newGame/reducer'
@@ -55,6 +55,8 @@ const ScoreInput = (props) => (
       <Col className='text-center'>
         <Button
           outline
+          value = 'out'
+          onClick={(event) => props.onSelectOut(event.target.value)}
           color='secondary'
         > Out </Button>
       </Col>
@@ -80,19 +82,22 @@ const mapStateAsProps = (state) => ({
   totalOvers: state.gameInformation.numberOfOvers,
   runs: state.currentDelivery.runs,
   extra: state.currentDelivery.extra,
-  currentDelivery : state.currentDelivery
+  currentDelivery : state.currentDelivery,
+  wicket: state.currentDelivery.wicket,
 })
 
 const mapDispatchAsProps = (dispatch) => ({
   onSelectRuns: (runs) => dispatch(updateRuns(runs)),
   onSelectExtras: (extra) => dispatch(updateExtras(extra)),
+  onSelectOut: () => dispatch(updateWicket(true)),
   updateRunsPerOver: (overDone, runs) => dispatch(updateRunsPerOver(overDone, runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
   updateInningsScore: (runs) => dispatch(updateInningsScore(runs)),
   updateInningsBall: () => dispatch(addABall()),
   swapInnings: (finishedInnings) => dispatch(swapInnings(finishedInnings)),
   initializeSecondInnings: () => dispatch(initializeSecondInnings()),
-  updateBatsmanStats: (batsman, currentDelivery) => dispatch(updateBatsmanStats(batsman, currentDelivery))
+  updateBatsmanStats: (batsman, currentDelivery) => dispatch(updateBatsmanStats(batsman, currentDelivery)),
+  updateInningsWicket: () => dispatch(addAWicket()),
 })
 
 
