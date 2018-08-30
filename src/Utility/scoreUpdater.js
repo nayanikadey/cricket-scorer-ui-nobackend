@@ -33,26 +33,31 @@ export const getBatsmanRuns = (currentDelivery) => {
 };
 
 export const gotoNextBall = (props) => {
-  if (Number.isNaN(props.runs) && !props.extra) { return; }
+  if (Number.isNaN(props.runs) && !props.extra && !props.wicket) { return; }
   const runs = Number.isNaN(props.runs) ? 0 : props.runs;
 
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
     const isLegalBall = isLegalDelivery(props.extra);
     props.updateInningsScore(runs + parseInt(isLegalBall ? 0 : 1, 10));
     props.updateBatsmanStats(props.inningsInformation.striker, props.currentDelivery);
+    if (props.wicket) {
+      props.updateInningsWicket();
+    }
     let overDone = false;
     if (isLegalBall) {
       overDone = (props.inningsInformation.balls % 6) + 1 === 6;
       props.updateInningsBall();
     }
     const runsPerOver = [];
-    //  runsPerOver.push(props.runs);
+    let runsA = (runs === 0 ? '' : runs);
+    // runsPerOver.push((runs === 0 ? '' : runs));
     if (props.extra) {
-      runsPerOver.push((props.runs === 0 ? '' : props.runs) + mapExtrasToCode[props.extra]);
-      //     runsPerOver.push(props.extra);
-    } else {
-      runsPerOver.push(props.runs);
+      runsA += (mapExtrasToCode[props.extra]);
     }
+    if (props.wicket) {
+      runsA += 'Wk';
+    }
+    runsPerOver.push(runsA);
     props.updateRunsPerOver(overDone, runsPerOver);
     props.updateBowlerStats(props.inningsInformation, props.runs, props.extra);
   } else if (props.inningsInformation.isFirstInnings) {
