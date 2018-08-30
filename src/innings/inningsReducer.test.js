@@ -106,7 +106,7 @@ describe('innningsReducer/addAWicket', () => {
       isFirstInnings: true,
       displayPopup: false,
       batsmans: ['Player1.2'],
-      displayBatsmanPopup: false,
+      displayBatsmanPopup: true,
     };
 
     expect(inningsReducer(undefined, addAWicket())).toEqual(initialState);
