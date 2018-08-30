@@ -491,16 +491,16 @@ describe('gameInformation/reducer', () => {
       bowler: 'Player2.11',
     };
     const currentDelivery = {
-      runs :10,
-      extra : NaN,
-      wickets : true,
-    }
+      runs: 10,
+      extra: NaN,
+      wickets: true,
+    };
     newState5[previousTeamName].players[inningsInformation.bowler].bowlingStats.runs = 10;
     newState5[previousTeamName].players[inningsInformation.bowler].bowlingStats.overs = 1;
     const action = {
       type: 'NEXT_BALL',
       innings: inningsInformation,
-      currentDelivery : currentDelivery,
+      currentDelivery,
     };
     expect(reducer(initialState, action)).toEqual(newState5);
   });

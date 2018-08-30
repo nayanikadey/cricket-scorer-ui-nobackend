@@ -412,6 +412,27 @@ export const updateBatsmanStats = (batsman, currentDelivery) => ({
   currentDelivery,
 });
 
+function getBowlerStats(action, state, newState) {
+  const player = action.innings.bowler;
+  const bowlingTeam = CricketUtility.getBowlingTeam(state);
+  const playerBowlingStat = newState[bowlingTeam].players[player];
+  return playerBowlingStat;
+}
+
+function updateBowlerStats(action, playerBowlingStat) {
+  const runs = Number.isNaN(action.currentDelivery.runs) ? 0 : action.currentDelivery.runs;
+  if (CricketUtility.isLegalDelivery(action.currentDelivery.extra)) {
+    playerBowlingStat.bowlingStats.overs += 1;
+    playerBowlingStat.bowlingStats.runs += runs;
+  } else {
+    playerBowlingStat.bowlingStats.runs += runs + 1;
+  }
+  if (action.currentDelivery.wicket) {
+    playerBowlingStat.bowlingStats.wickets += 1;
+  }
+}
+
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SWAP_INNINGS': {
@@ -460,30 +481,7 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-
-
 };
 
 export default reducer;
-
-function getBowlerStats(action, state, newState) {
-  const player = action.innings.bowler;
-  const bowlingTeam = CricketUtility.getBowlingTeam(state);
-  const playerBowlingStat = newState[bowlingTeam].players[player];
-  return playerBowlingStat;
-}
-
-function updateBowlerStats(action, playerBowlingStat) {
-  const runs = Number.isNaN(action.currentDelivery.runs) ? 0 : action.currentDelivery.runs;
-  if (CricketUtility.isLegalDelivery(action.currentDelivery.extra)) {
-    playerBowlingStat.bowlingStats.overs += 1;
-    playerBowlingStat.bowlingStats.runs += runs;
-  }
-  else {
-    playerBowlingStat.bowlingStats.runs += runs + 1;
-  }
-  if (action.currentDelivery.wicket) {
-    playerBowlingStat.bowlingStats.wickets += 1;
-  }
-}
 
