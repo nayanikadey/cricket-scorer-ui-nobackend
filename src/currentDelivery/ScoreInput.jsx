@@ -1,19 +1,11 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
-import { updateRuns, resetCurrentDelivery, updateExtras } from '../currentDelivery/currentDeliveryReducer';
-import { updateInningsScore, addABall, initializeSecondInnings, swapStriker } from '../innings/inningsReducer'
-import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
-import { gotoNextBall } from '../Utility/scoreUpdater'
-import { swapInnings, updateBatsmanStats } from '../newGame/reducer'
-=======
 import { updateRuns, resetCurrentDelivery, updateExtras, updateWicket } from '../currentDelivery/currentDeliveryReducer';
-import { updateInningsScore, addABall, initializeSecondInnings, addAWicket } from '../innings/inningsReducer'
+import { updateInningsScore, addABall, initializeSecondInnings, addAWicket , swapStriker} from '../innings/inningsReducer'
 import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
 import { swapInnings, updateBowlerStats, updateBatsmanStats} from '../newGame/reducer'
->>>>>>> 606b9f5433b8c9dc43c1b9545015958a1dc0d72a
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 const EXTRAS = ['W', 'N', 'B', 'Lb'];
