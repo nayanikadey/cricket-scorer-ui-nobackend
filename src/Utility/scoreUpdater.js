@@ -32,16 +32,13 @@ export const getBatsmanRuns = (currentDelivery) => {
   return 0;
 };
 
-const getRunsAfterAddingExtra = (runs, isLegalBall) => runs + parseInt(isLegalBall ? 0 : 1, 10);
-
-
 export const gotoNextBall = (props) => {
   if (Number.isNaN(props.runs) && !props.extra && !props.wicket) { return; }
   const runs = Number.isNaN(props.runs) ? 0 : props.runs;
 
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
     const isLegalBall = isLegalDelivery(props.extra);
-    props.updateInningsScore(getRunsAfterAddingExtra(runs, isLegalBall));
+    props.updateInningsScore(runs + parseInt(isLegalBall ? 0 : 1, 10));
     props.updateBatsmanStats(props.inningsInformation.striker, props.currentDelivery);
     if (props.wicket) {
       props.updateInningsWicket();
@@ -62,10 +59,7 @@ export const gotoNextBall = (props) => {
     }
     runsPerOver.push(runsPerBall);
     props.updateRunsPerOver(overDone, runsPerOver);
-    props.updateBowlerStats(
-      props.inningsInformation,
-      getRunsAfterAddingExtra(runs, isLegalBall), props.extra,
-    );
+    props.updateBowlerStats(props.inningsInformation, runs, props.extra);
   } else if (props.inningsInformation.isFirstInnings) {
     const finishedInnings = props.inningsInformation;
     props.initializeSecondInnings();
