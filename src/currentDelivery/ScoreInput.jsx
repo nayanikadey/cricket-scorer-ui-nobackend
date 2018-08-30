@@ -5,7 +5,7 @@ import { updateRuns, resetCurrentDelivery, updateExtras } from '../currentDelive
 import { updateInningsScore, addABall, initializeSecondInnings } from '../innings/inningsReducer'
 import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
-import { swapInnings} from '../newGame/reducer'
+import { swapInnings } from '../newGame/reducer'
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 const EXTRAS = ['W', 'N', 'B', 'Lb'];
@@ -53,12 +53,22 @@ const ScoreInput = (props) => (
     <br />
     <Row>
       <Col className='text-center'>
-        <Button 
+        <Button
           outline
-          onClick={() => gotoNextBall(props)} 
-          color='secondary' 
+          color='secondary'
+        > Out </Button>
+      </Col>
+    </Row>
+    <br />
+    <br />
+    <Row>
+      <Col className='text-center'>
+        <Button
+          outline
+          onClick={() => gotoNextBall(props)}
+          color='secondary'
           className='large-font-size bold-text'
-          > Next Ball </Button>
+        > Next Ball </Button>
       </Col>
     </Row>
   </div>
