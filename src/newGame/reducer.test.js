@@ -382,7 +382,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
-            hasBowled: false,
+            hasBowled: true,
           },
         },
       },
@@ -418,6 +418,36 @@ describe('gameInformation/reducer', () => {
     const action = {
       type: 'SWAP_INNINGS',
       previousInnings: inningsInformation,
+    };
+    expect(reducer(undefined, action)).toEqual(newState);
+  });
+
+  it('expects the bowling stats of a player to get updated', () => {
+    const newState = Object.assign({}, initialState);
+    const previousTeamName = newState.previousTeam;
+    const inningsInformation = {
+      bowler: 'Player2.11',
+    };
+
+    newState[previousTeamName].players[inningsInformation.bowler].bowlingStats.runs = 10;
+    newState[previousTeamName].players[inningsInformation.bowler].bowlingStats.overs = 1;
+    const action = {
+      type: 'UPDATE_BOWLER_STATS',
+      innings: inningsInformation,
+      runs: 10,
+      extra: NaN,
+    };
+    expect(reducer(undefined, action)).toEqual(newState);
+  });
+
+  it('Expects to set the current bowler when a new bowler is selected', () => {
+    const newState = Object.assign({}, initialState);
+    const previousTeamName = newState.previousTeam;
+    const bowler = 'Player2.10';
+    newState[previousTeamName].players[bowler].bowlingStats.hasBowled = true;
+    const action = {
+      type: 'SET_BOWLER_STATUS',
+      bowler,
     };
     expect(reducer(undefined, action)).toEqual(newState);
   });

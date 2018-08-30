@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { StatsDetails } from './StatsTable';
-
+import CricketUtility from '../Utility/cricketUtility';
 
 const createRowForBowlingDetails = player => [{ value: player.name, className: 'right-borders' },
-  { value: player.bowlingStats.overs, className: 'right-borders' },
+  { value: CricketUtility.getOversFromTotalBallsPlayed(player.bowlingStats.overs), className: 'right-borders' },
   { value: player.bowlingStats.maiden, className: 'right-borders' },
   { value: player.bowlingStats.runs, className: 'right-borders' },
   { value: player.bowlingStats.wickets, className: 'right-borders' }];

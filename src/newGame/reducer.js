@@ -1,3 +1,6 @@
+import CricketUtility from '../Utility/cricketUtility';
+import { isLegalDelivery } from '../Utility/scoreUpdater';
+
 const initialState = {
   'Team 1': {
     players: {
@@ -379,7 +382,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
-          hasBowled: false,
+          hasBowled: true,
         },
       },
     },
@@ -397,6 +400,18 @@ export const swapInnings = inningsInformation => ({
   previousInnings: inningsInformation,
 });
 
+export const updateBowlerStats = (inningsInformation, runs, extra) => ({
+  type: 'UPDATE_BOWLER_STATS',
+  innings: inningsInformation,
+  runs,
+  extra,
+});
+
+export const setBowlerStatus = bowler => ({
+  type: 'SET_BOWLER_STATUS',
+  bowler,
+});
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SWAP_INNINGS': {
@@ -407,6 +422,27 @@ const reducer = (state = initialState, action) => {
       newState[finishedTeam].score = action.previousInnings.totalScore;
       newState[finishedTeam].wickets = action.previousInnings.wickets;
       newState[finishedTeam].ballsPlayed = action.previousInnings.balls;
+      return newState;
+    }
+
+    case 'UPDATE_BOWLER_STATS': {
+      const player = action.innings.bowler;
+      const bowlingTeam = CricketUtility.getBowlingTeam(initialState);
+      const newState = Object.assign({}, state);
+      const playerBowlingStat = newState[bowlingTeam].players[player];
+      if (isLegalDelivery(action.extra)) {
+        playerBowlingStat.bowlingStats.overs += 1;
+      }
+      const extraRuns = Number.isNaN(action.extra) ? 0 : action.extra;
+      playerBowlingStat.bowlingStats.runs += action.runs + extraRuns;
+      return newState;
+    }
+
+    case 'SET_BOWLER_STATUS': {
+      const bowlingTeam = CricketUtility.getBowlingTeam(initialState);
+      const newState = Object.assign({}, state);
+      const playerBowlingStat = newState[bowlingTeam].players[action.bowler];
+      playerBowlingStat.bowlingStats.hasBowled = true;
       return newState;
     }
 

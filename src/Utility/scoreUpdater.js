@@ -41,6 +41,7 @@ export const gotoNextBall = (props) => {
       runsPerOver.push(props.runs);
     }
     props.updateRunsPerOver(overDone, runsPerOver);
+    props.updateBowlerStats(props.inningsInformation, props.runs, props.extra);
   } else if (props.inningsInformation.isFirstInnings) {
     const finishedInnings = props.inningsInformation;
     props.initializeSecondInnings();

@@ -5,7 +5,7 @@ import { updateRuns, resetCurrentDelivery, updateExtras } from '../currentDelive
 import { updateInningsScore, addABall, initializeSecondInnings } from '../innings/inningsReducer'
 import { updateRunsPerOver } from '../currentOverStats/currentOverStatsReducer';
 import { gotoNextBall } from '../Utility/scoreUpdater'
-import { swapInnings} from '../newGame/reducer'
+import { swapInnings, updateBowlerStats} from '../newGame/reducer'
 
 const SCORES_POSSIBLE = [0, 1, 2, 3, 4, 5, 6, 7];
 const EXTRAS = ['W', 'N', 'B', 'Lb'];
@@ -81,6 +81,7 @@ const mapDispatchAsProps = (dispatch) => ({
   updateInningsBall: () => dispatch(addABall()),
   swapInnings: (finishedInnings) => dispatch(swapInnings(finishedInnings)),
   initializeSecondInnings: () => dispatch(initializeSecondInnings()),
+  updateBowlerStats : (inningsInformation, runs, extra) => dispatch(updateBowlerStats(inningsInformation, runs, extra)),
 })
 
 
