@@ -1,4 +1,4 @@
-import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addABall, addAWicket, createInitialInning, initializeSecondInnings } from './inningsReducer';
+import inningsReducer, { updateInningsScore, updateStriker, updateNonStriker, updateBowler, addABall, addAWicket, createInitialInning, initializeSecondInnings, swapStriker } from './inningsReducer';
 
 describe('innningsReducer/reducer', () => {
   it('should return initial state for innings', () => {
@@ -149,6 +149,34 @@ describe('inningsReducer/createSecondInning', () => {
     };
 
     expect(inningsReducer(undefined, initializeSecondInnings())).toEqual(initialState);
+  });
+
+  describe('inningsReducer/swapStriker', () => {
+    it('should swap the strikers', () => {
+      const initialState = {
+        totalScore: 0,
+        wickets: 0,
+        balls: 0,
+        striker: 'Player2.1',
+        nonStriker: 'Player2.2',
+        bowler: 'Player1.11',
+        isFirstInnings: false,
+        displayPopup: false,
+      };
+
+      const expectedState = {
+        totalScore: 0,
+        wickets: 0,
+        balls: 0,
+        striker: 'Player2.2',
+        nonStriker: 'Player2.1',
+        bowler: 'Player1.11',
+        isFirstInnings: false,
+        displayPopup: false,
+      };
+
+      expect(inningsReducer(initialState, swapStriker())).toEqual(expectedState);
+    });
   });
 });
 
