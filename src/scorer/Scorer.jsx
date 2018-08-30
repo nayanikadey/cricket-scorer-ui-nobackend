@@ -4,6 +4,7 @@ import ScoreInput from '../currentDelivery/ScoreInput';
 import { ConnectedScoredCardForPlayedTeam, ConnectedScoreBoard } from './Scoreboard';
 import { Container, Row, Col } from 'reactstrap';
 import BowlingModal from '../modal/BowlerModal';
+import BatsmanDisplay from '../currentDelivery/batsmans';
 
 const Scorer = () => (
   <Container>
@@ -13,6 +14,7 @@ const Scorer = () => (
         <ConnectedScoreBoard pageName='scorer'/>
         <ConnectedScoredCardForPlayedTeam />
         <ConnectedCurrentOverStats />
+        <BatsmanDisplay />
         <ScoreInput />
         <BowlingModal />
       </Col>

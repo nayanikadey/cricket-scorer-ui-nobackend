@@ -23,12 +23,25 @@ export const isLegalDelivery = (extra) => {
   }
 };
 
+export const getBatsmanRuns = (currentDelivery) => {
+  if (!currentDelivery.runs) { return 0; }
+
+  if (!currentDelivery.extra || currentDelivery.extra === 'N') {
+    return currentDelivery.runs;
+  }
+  return 0;
+};
+
 export const gotoNextBall = (props) => {
-  if (Number.isNaN(props.runs)) { return; }
+  if (Number.isNaN(props.runs) && !props.extra) { return; }
+  const runs = Number.isNaN(props.runs) ? 0 : props.runs;
+
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
-    props.updateInningsScore(props.runs);
+    const isLegalBall = isLegalDelivery(props.extra);
+    props.updateInningsScore(runs + parseInt(isLegalBall ? 0 : 1, 10));
+    props.updateBatsmanStats(props.inningsInformation.striker, props.currentDelivery);
     let overDone = false;
-    if (isLegalDelivery(props.extra)) {
+    if (isLegalBall) {
       overDone = (props.inningsInformation.balls % 6) + 1 === 6;
       props.updateInningsBall();
     }
