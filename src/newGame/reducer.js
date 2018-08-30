@@ -401,13 +401,6 @@ export const swapInnings = inningsInformation => ({
   previousInnings: inningsInformation,
 });
 
-export const updateBowlerStats = (inningsInformation, runs, extra) => ({
-  type: 'UPDATE_BOWLER_STATS',
-  innings: inningsInformation,
-  runs,
-  extra,
-});
-
 export const setBowlerStatus = bowler => ({
   type: 'SET_BOWLER_STATUS',
   bowler,
@@ -448,20 +441,6 @@ const reducer = (state = initialState, action) => {
       return newState;
     }
 
-    case 'UPDATE_BOWLER_STATS': {
-      const player = action.innings.bowler;
-      const bowlingTeam = CricketUtility.getBowlingTeam(state);
-      const newState = Object.assign({}, state);
-      const playerBowlingStat = newState[bowlingTeam].players[player];
-      if (CricketUtility.isLegalDelivery(action.extra)) {
-        playerBowlingStat.bowlingStats.overs += 1;
-      }
-      const extraRuns = Number.isNaN(action.extra) || typeof action.extra === 'string' ? 0 : action.extra;
-      const runs = Number.isNaN(action.runs) ? 0 : action.runs;
-      playerBowlingStat.bowlingStats.runs += runs + extraRuns;
-      return newState;
-    }
-
     case 'SET_BOWLER_STATUS': {
       const bowlingTeam = CricketUtility.getBowlingTeam(state);
       const newState = Object.assign({}, state);
@@ -470,9 +449,41 @@ const reducer = (state = initialState, action) => {
       return newState;
     }
 
+    case 'NEXT_BALL': {
+      const newState = Object.assign({}, state);
+      const playerBowlingStat = getBowlerStats(action, state, newState);
+      updateBowlerStats(action, playerBowlingStat);
+
+      return newState;
+    }
+
     default:
       return state;
   }
+
+
 };
 
 export default reducer;
+
+function getBowlerStats(action, state, newState) {
+  const player = action.innings.bowler;
+  const bowlingTeam = CricketUtility.getBowlingTeam(state);
+  const playerBowlingStat = newState[bowlingTeam].players[player];
+  return playerBowlingStat;
+}
+
+function updateBowlerStats(action, playerBowlingStat) {
+  const runs = Number.isNaN(action.currentDelivery.runs) ? 0 : action.currentDelivery.runs;
+  if (CricketUtility.isLegalDelivery(action.currentDelivery.extra)) {
+    playerBowlingStat.bowlingStats.overs += 1;
+    playerBowlingStat.bowlingStats.runs += runs;
+  }
+  else {
+    playerBowlingStat.bowlingStats.runs += runs + 1;
+  }
+  if (action.currentDelivery.wicket) {
+    playerBowlingStat.bowlingStats.wickets += 1;
+  }
+}
+

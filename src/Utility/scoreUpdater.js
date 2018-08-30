@@ -27,7 +27,7 @@ export const swapStriker = (overDone, runs) => {
   if (swaps % 2 === 1) { return true; }
   return false;
 };
-const getRunsAfterAddingExtra = (runs, isLegalBall) => runs + parseInt(isLegalBall ? 0 : 1, 10);
+
 
 
 export const gotoNextBall = (props) => {
@@ -35,8 +35,11 @@ export const gotoNextBall = (props) => {
   const runs = Number.isNaN(props.runs) ? 0 : props.runs;
 
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
+    // Refactor | START  
+    props.nextBallAction(props.inningsInformation, props.currentDelivery);
+    // Refactor | END
     const isLegalBall = CricketUtility.isLegalDelivery(props.extra);
-    props.updateInningsScore(getRunsAfterAddingExtra(runs, isLegalBall));
+    props.updateInningsScore(CricketUtility.getRunsAfterAddingExtra(runs, isLegalBall));
     props.updateBatsmanStats(props.inningsInformation.striker, props.currentDelivery);
     if (props.wicket) {
       props.updateInningsWicket();
@@ -58,10 +61,6 @@ export const gotoNextBall = (props) => {
     runsPerOver.push(runsPerBall);
     props.updateRunsPerOver(overDone, runsPerOver);
     if (swapStriker(overDone, runs)) { props.switchStriker(); }
-    props.updateBowlerStats(
-      props.inningsInformation,
-      getRunsAfterAddingExtra(runs, isLegalBall), props.extra,
-    );
   } else if (props.inningsInformation.isFirstInnings) {
     const finishedInnings = props.inningsInformation;
     props.initializeSecondInnings();
