@@ -418,7 +418,7 @@ function updateBatsmanStats(currentBatsman, batsmanRuns, action) {
   return currentBatsman;
 }
 
-export const gameInitialization = (gameData) => ({
+export const gameInitialization = gameData => ({
   type: 'GAME_INITIALIZATION',
   gameData,
 });
@@ -493,10 +493,10 @@ const reducer = (state = initialState, action) => {
       const gameInitializationState = {};
       gameInitializationState[action.gameData.battingTeam] = initialState['Team 1'];
       gameInitializationState[action.gameData.bowlingTeam] = initialState['Team 2'];
-      gameInitializationState['numberOfOvers'] = parseInt(action.gameData.numberOfOvers, 10);
+      gameInitializationState.numberOfOvers = parseInt(action.gameData.numberOfOvers, 10);
       // make it undefined when the previous team null/undefined is handled
-      gameInitializationState['previousTeam'] = action.gameData.bowlingTeam;
-      gameInitializationState['currentTeam'] = action.gameData.battingTeam;
+      gameInitializationState.previousTeam = action.gameData.bowlingTeam;
+      gameInitializationState.currentTeam = action.gameData.battingTeam;
       return gameInitializationState;
     }
 

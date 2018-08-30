@@ -1,13 +1,12 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Button } from 'reactstrap'
+import { InputGroup, InputGroupAddon, InputGroupText, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { gameInitialization } from './reducer'
+import { gameInitialization } from './reducer';
 import { HashLink as Link } from 'react-router-hash-link';
 
 
 class NewGame extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -15,16 +14,15 @@ class NewGame extends React.Component {
       battingTeam: '',
       numberOfOvers: 1,
     };
-
   }
 
   render() {
     return (
       <Container>
         <Row>
-          <Col md={{ size: 6, offset: 3 }} className='background-app-color view-height-100'>
+          <Col md={{ size: 6, offset: 3 }} className="background-app-color view-height-100">
             <br />
-            <h2 className='text-center'>Create Game</h2>
+            <h2 className="text-center">Create Game</h2>
             <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">
@@ -32,9 +30,9 @@ class NewGame extends React.Component {
               </InputGroupAddon>
               <Input
                 value={this.state.battingTeam}
-                onChange={(event) =>
+                onChange={event =>
                   this.setState({
-                    battingTeam: event.target.value
+                    battingTeam: event.target.value,
                   })
                 }
               />
@@ -46,9 +44,9 @@ class NewGame extends React.Component {
               </InputGroupAddon>
               <Input
                 value={this.state.bowlingTeam}
-                onChange={(event) =>
+                onChange={event =>
                   this.setState({
-                    bowlingTeam: event.target.value
+                    bowlingTeam: event.target.value,
                   })
                 }
               />
@@ -60,30 +58,32 @@ class NewGame extends React.Component {
               </InputGroupAddon>
               <Input
                 value={this.state.numberOfOvers}
-                onChange={(event) =>
+                onChange={event =>
                   this.setState({
-                    numberOfOvers: event.target.value
+                    numberOfOvers: event.target.value,
                   })
-                } />
+                }
+              />
             </InputGroup>
             <br />
-            <div className='text-center'>
-              <Link to='/scorer'>
+            <div className="text-center">
+              <Link to="/scorer">
                 <Button
-                  color='primary'
+                  color="primary"
                   onClick={() => this.props.createGame(this.state)}
-                >Create Game</Button>
+                >Create Game
+                </Button>
               </Link>
 
             </div>
           </Col>
         </Row>
       </Container>);
-  };
+  }
 }
 
-const mapDispatcherAsProps = (dispatch) => ({
-  createGame: (gameData) => dispatch(gameInitialization(gameData)),
+const mapDispatcherAsProps = dispatch => ({
+  createGame: gameData => dispatch(gameInitialization(gameData)),
 });
 
 export default connect(undefined, mapDispatcherAsProps)(NewGame);
