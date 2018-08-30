@@ -1,10 +1,9 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { gameInitialization } from './reducer';
+import { InputGroup, InputGroupAddon, InputGroupText, Input, Button, Container, Row, Col } from 'reactstrap';
 import { HashLink as Link } from 'react-router-hash-link';
-
+import PropTypes from 'prop-types';
+import { gameInitialization } from './reducer';
 
 class NewGame extends React.Component {
   constructor(props) {
@@ -67,7 +66,7 @@ class NewGame extends React.Component {
             </InputGroup>
             <br />
             <div className="text-center">
-              <Link to="/scorer">
+              <Link href="/scorer" to="/scorer">
                 <Button
                   color="primary"
                   onClick={() => this.props.createGame(this.state)}
@@ -81,6 +80,16 @@ class NewGame extends React.Component {
       </Container>);
   }
 }
+
+NewGame.propTypes = {
+  createGame: PropTypes.func,
+};
+
+NewGame.defaultProps = {
+  createGame(e) {
+    return e;
+  },
+};
 
 const mapDispatcherAsProps = dispatch => ({
   createGame: gameData => dispatch(gameInitialization(gameData)),
