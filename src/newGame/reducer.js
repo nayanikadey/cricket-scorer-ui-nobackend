@@ -1,4 +1,4 @@
-import { getBatsmanRuns, isLegalDelivery } from '../Utility/scoreUpdater'
+import { getBatsmanRuns, isLegalDelivery } from '../Utility/scoreUpdater';
 
 const initialState = {
   'Team 1': {
@@ -17,6 +17,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.2': {
@@ -33,6 +34,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.3': {
@@ -49,6 +51,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.4': {
@@ -65,6 +68,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.5': {
@@ -81,6 +85,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.6': {
@@ -97,6 +102,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.7': {
@@ -113,6 +119,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.8': {
@@ -129,6 +136,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.9': {
@@ -145,6 +153,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.10': {
@@ -161,6 +170,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player1.11': {
@@ -177,6 +187,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
     },
@@ -200,6 +211,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.2': {
@@ -216,6 +228,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.3': {
@@ -232,6 +245,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.4': {
@@ -248,6 +262,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.5': {
@@ -264,6 +279,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.6': {
@@ -280,6 +296,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.7': {
@@ -296,6 +313,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.8': {
@@ -312,6 +330,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.9': {
@@ -328,6 +347,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.10': {
@@ -344,6 +364,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
       'Player2.11': {
@@ -360,6 +381,7 @@ const initialState = {
           maiden: 0,
           runs: 0,
           wickets: 0,
+          hasBowled: false,
         },
       },
     },
@@ -380,7 +402,7 @@ export const swapInnings = inningsInformation => ({
 export const updateBatsmanStats = (batsman, currentDelivery) => ({
   type: 'UPDATE_BATSMAN_STATS',
   batsman,
-  currentDelivery
+  currentDelivery,
 });
 
 const reducer = (state = initialState, action) => {
@@ -395,19 +417,20 @@ const reducer = (state = initialState, action) => {
       newState[finishedTeam].ballsPlayed = action.previousInnings.balls;
       return newState;
     }
-    case 'UPDATE_BATSMAN_STATS' : {
+    case 'UPDATE_BATSMAN_STATS': {
       const newState = Object.assign({}, state);
-      let player = newState[newState.currentTeam].players[action.batsman];
+      const player = newState[newState.currentTeam].players[action.batsman];
       const batsmanRuns = getBatsmanRuns(action.currentDelivery);
       player.battingStats.runs += batsmanRuns;
-      if(batsmanRuns == 4)
-        player.battingStats.fours ++;
-      else if(batsmanRuns == 6)
-        player.battingStats.sixes ++;
+      if (batsmanRuns === 4) {
+        player.battingStats.fours += 1;
+      } else if (batsmanRuns === 6) {
+        player.battingStats.sixes += 1;
+      }
+      if (isLegalDelivery(action.currentDelivery.extra)) {
+        player.battingStats.balls += 1;
+      }
 
-      if(isLegalDelivery(action.currentDelivery.extra))
-        player.battingStats.balls++;
-        
       return newState;
     }
 

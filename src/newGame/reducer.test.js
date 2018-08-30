@@ -18,6 +18,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.2': {
@@ -34,6 +35,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.3': {
@@ -50,6 +52,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.4': {
@@ -66,6 +69,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.5': {
@@ -82,6 +86,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.6': {
@@ -98,6 +103,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.7': {
@@ -114,6 +120,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.8': {
@@ -130,6 +137,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.9': {
@@ -146,6 +154,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.10': {
@@ -162,6 +171,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player1.11': {
@@ -178,6 +188,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
       },
@@ -201,6 +212,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.2': {
@@ -217,6 +229,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.3': {
@@ -233,6 +246,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.4': {
@@ -249,6 +263,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.5': {
@@ -265,6 +280,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.6': {
@@ -281,6 +297,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.7': {
@@ -297,6 +314,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.8': {
@@ -313,6 +331,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.9': {
@@ -329,6 +348,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.10': {
@@ -345,6 +365,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
         'Player2.11': {
@@ -361,6 +382,7 @@ describe('gameInformation/reducer', () => {
             maiden: 0,
             runs: 0,
             wickets: 0,
+            hasBowled: false,
           },
         },
       },
@@ -404,18 +426,18 @@ describe('gameInformation/reducer', () => {
     const newState2 = Object.assign({}, initialState);
     newState2.currentTeam = 'Team 1';
     newState2.previousTeam = 'Team 2';
-    let battingStats = newState2['Team 1'].players['Player1.1'].battingStats;
-    battingStats.balls = 1;
-    battingStats.runs = 3;
+    const player = newState2['Team 1'].players['Player1.1'];
+    player.battingStats.balls = 1;
+    player.battingStats.runs = 3;
 
     const action = {
       type: 'UPDATE_BATSMAN_STATS',
       batsman: 'Player1.1',
-      currentDelivery : {
+      currentDelivery: {
         runs: 3,
         extra: NaN,
-        striker: 'Player1.1'
-      }
+        striker: 'Player1.1',
+      },
     };
     expect(reducer(undefined, action)).toEqual(newState2);
   });
@@ -424,20 +446,20 @@ describe('gameInformation/reducer', () => {
     const newState3 = Object.assign({}, initialState);
     newState3.currentTeam = 'Team 1';
     newState3.previousTeam = 'Team 2';
-    let battingStats = newState3['Team 1'].players['Player1.1'].battingStats;
-    battingStats.balls = 0;
-    battingStats.runs = 0;
+    const player1 = newState3['Team 1'].players['Player1.1'];
+    player1.battingStats.balls = 0;
+    player1.battingStats.runs = 0;
 
     const action = {
       type: 'UPDATE_BATSMAN_STATS',
       batsman: 'Player1.1',
-      currentDelivery : {
+      currentDelivery: {
         runs: 4,
         extra: 'W',
-        striker: 'Player1.1'
-      }
+        striker: 'Player1.1',
+      },
     };
-    let actualState = reducer(initialState, action);
+    const actualState = reducer(initialState, action);
     expect(actualState).toEqual(newState3);
   });
 
@@ -445,20 +467,20 @@ describe('gameInformation/reducer', () => {
     const newState4 = Object.assign({}, initialState);
     newState4.currentTeam = 'Team 1';
     newState4.previousTeam = 'Team 2';
-    let battingStats = newState4['Team 1'].players['Player1.1'].battingStats;
-    battingStats.balls = 0;
-    battingStats.runs = 4;
+    const player2 = newState4['Team 1'].players['Player1.1'];
+    player2.battingStats.balls = 0;
+    player2.battingStats.runs = 4;
 
     const action = {
       type: 'UPDATE_BATSMAN_STATS',
       batsman: 'Player1.1',
-      currentDelivery : {
+      currentDelivery: {
         runs: 4,
         extra: 'N',
-        striker: 'Player1.1'
-      }
+        striker: 'Player1.1',
+      },
     };
-    let actualState = reducer(initialState, action);
+    const actualState = reducer(initialState, action);
     expect(actualState).toEqual(newState4);
   });
 });

@@ -36,7 +36,7 @@ const ScoreInput = (props) => (
       {EXTRAS.map((score, index) =>
         <Col md={{ size: 1 }}>
           <Button
-          outline
+            outline
             key={index}
             value={score}
             color={props.extra === score ? "success" : "secondary"}
@@ -53,12 +53,22 @@ const ScoreInput = (props) => (
     <br />
     <Row>
       <Col className='text-center'>
-        <Button 
+        <Button
           outline
-          onClick={() => gotoNextBall(props)} 
-          color='secondary' 
+          color='secondary'
+        > Out </Button>
+      </Col>
+    </Row>
+    <br />
+    <br />
+    <Row>
+      <Col className='text-center'>
+        <Button
+          outline
+          onClick={() => gotoNextBall(props)}
+          color='secondary'
           className='large-font-size bold-text'
-          > Next Ball </Button>
+        > Next Ball </Button>
       </Col>
     </Row>
   </div>
@@ -76,7 +86,7 @@ const mapStateAsProps = (state) => ({
 const mapDispatchAsProps = (dispatch) => ({
   onSelectRuns: (runs) => dispatch(updateRuns(runs)),
   onSelectExtras: (extra) => dispatch(updateExtras(extra)),
-  updateRunsPerOver: (runs) => dispatch(updateRunsPerOver(runs)),
+  updateRunsPerOver: (overDone, runs) => dispatch(updateRunsPerOver(overDone, runs)),
   resetCurrentDelivery: () => dispatch(resetCurrentDelivery()),
   updateInningsScore: (runs) => dispatch(updateInningsScore(runs)),
   updateInningsBall: () => dispatch(addABall()),
