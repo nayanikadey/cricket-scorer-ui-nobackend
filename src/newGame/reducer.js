@@ -391,7 +391,7 @@ const initialState = {
     wickets: 0,
     ballsPlayed: 0,
   },
-  numberOfOvers: 5,
+  numberOfOvers: 1,
   currentTeam: 'Team 1',
   previousTeam: 'Team 2',
 };
@@ -450,7 +450,7 @@ const reducer = (state = initialState, action) => {
 
     case 'UPDATE_BOWLER_STATS': {
       const player = action.innings.bowler;
-      const bowlingTeam = CricketUtility.getBowlingTeam(initialState);
+      const bowlingTeam = CricketUtility.getBowlingTeam(state);
       const newState = Object.assign({}, state);
       const playerBowlingStat = newState[bowlingTeam].players[player];
       if (isLegalDelivery(action.extra)) {
@@ -462,7 +462,7 @@ const reducer = (state = initialState, action) => {
     }
 
     case 'SET_BOWLER_STATUS': {
-      const bowlingTeam = CricketUtility.getBowlingTeam(initialState);
+      const bowlingTeam = CricketUtility.getBowlingTeam(state);
       const newState = Object.assign({}, state);
       const playerBowlingStat = newState[bowlingTeam].players[action.bowler];
       playerBowlingStat.bowlingStats.hasBowled = true;
