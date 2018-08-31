@@ -20,8 +20,6 @@ export const gotoNextBall = (props) => {
 
   if (isBallsLeftToBeBowled(props.inningsInformation.balls, props.totalOvers)) {
     props.nextBallAction(props.inningsInformation, props.currentDelivery);
-
-
     let overDone = false;
     if (CricketUtility.isLegalDelivery(props.extra)) {
       overDone = (props.inningsInformation.balls % 6) + 1 === 6;
