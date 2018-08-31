@@ -44,6 +44,11 @@ html, body {
     color: white;
 }
 
+.color-red {
+    background-color: #dc3545;
+    color: white;
+}
+
 .color-transparent {
     background-color: transparent;
 }

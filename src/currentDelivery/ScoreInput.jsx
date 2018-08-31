@@ -59,6 +59,7 @@ const ScoreInput = (props) => (
           outline
           value = 'out'
           onClick={() => props.onSelectOut(props.inningsInformation.striker)}
+          className={props.wicket ? 'color-red' : 'color-transparent'}
           color='secondary'
         > Out </Button>
       </Col>
